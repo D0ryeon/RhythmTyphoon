@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UIManager : Singletone<UIManager> 
 { 
-    private int score;
+    private int currentScore;
     private int combo;
     private int maxHealth;
     private int currentHealth;
@@ -27,35 +27,37 @@ public class UIManager : Singletone<UIManager>
 
     private void Start()
     {
-        StartCoroutine(nameof(StartCount));
+        noteSpawnManager = NoteSpawnManager.instance;
+        currentScore = 0;
+        combo = 0;
+        maxHealth = 5;
+        OnUpdateScore += (int change) => { currentScore += change; };
+        OnUpdateCombo += (int change) => { combo += change; };
+        OnUpdateHealth += (int change) => { currentHealth += change; };
+
+    }
+
+    private void UIManager_OnUpdateHealth(int obj)
+    {
+        throw new NotImplementedException();
     }
 
     public void UpdateScore(int change)
     {
-
+        OnUpdateScore?.Invoke(change);
+        Debug.Log("CurrentScore : "+currentScore);
     }
 
     public void UpdateCombo(int change)
     {
-
+       OnUpdateCombo?.Invoke(change);
+        Debug.Log("Combo : " + combo);
     }
 
     public void UpdateHealth(int change)
     {
-
+        OnUpdateHealth?.Invoke(change);
     }
 
- 
-    private IEnumerator StartCount()
-    {
-        _startCountText.text = "3";
-        yield return new WaitForSeconds(1f);
-        _startCountText.text = "2";
-        yield return new WaitForSeconds(1f);
-        _startCountText.text = "1";
-        yield return new WaitForSeconds(1f);
-        _startCountText.text = "0";
-        yield return new WaitForSeconds(0.2f);
-    }
  
 }
