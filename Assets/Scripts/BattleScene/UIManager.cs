@@ -18,9 +18,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _startCountText;
 
-    [SerializeField] private GameObject _healthPrefab;
 
-    private GameObject[] HealthIcons;
 
     public event Action<int> OnUpdateScore;
     public event Action<int> OnUpdateCombo;
@@ -38,11 +36,7 @@ public class UIManager : MonoBehaviour
         OnUpdateHealth += (int change) => { currentHealth += change; };
     }
 
-    private void UIManager_OnUpdateHealth(int obj)
-    {
-        return;
-    }
-
+  
     public void UpdateScore(int change)
     {
         OnUpdateScore?.Invoke(change);

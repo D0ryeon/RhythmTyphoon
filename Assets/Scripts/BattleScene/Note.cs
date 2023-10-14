@@ -26,21 +26,30 @@ public class Note : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Vector2 collisionPoint = collision.ClosestPoint(transform.position);
-        float xDistanceFromCollisionPoint = Mathf.Abs(collisionPoint.x - this.transform.position.x);
-        Debug.Log(xDistanceFromCollisionPoint);
-        if (xDistanceFromCollisionPoint < _perfectRange)
+        if (collision.CompareTag("Player"))
         {
-            Debug.Log("Perfect!");
-            uiManager.UpdateScore(100);
-            uiManager.UpdateCombo(1);
+            Vector2 collisionPoint = collision.ClosestPoint(transform.position);
+            float xDistanceFromCollisionPoint = Mathf.Abs(collisionPoint.x - this.transform.position.x);
+            Debug.Log(xDistanceFromCollisionPoint);
+            if (xDistanceFromCollisionPoint < _perfectRange)
+            {
+                Debug.Log("Perfect!");
+                uiManager.UpdateScore(100);
+                uiManager.UpdateCombo(1);
+            }
+            else
+            {
+                Debug.Log("Good");
+                uiManager.UpdateScore(50);
+                uiManager.UpdateCombo(1);
+            }
         }
         else
         {
-            Debug.Log("Good");
-            uiManager.UpdateScore(50);
-            uiManager.UpdateCombo(1);
+            uiManager.UpdateHealth(1);
         }
+
+       
 
         this.gameObject.SetActive(false);
     }

@@ -68,4 +68,6 @@ public class NoteSpawnManager : MonoBehaviour
     {
         StopCoroutine(NoteSpawnCoroutine());
     }
+
+    public void SetUIManager(UIManager uiManager) => this.UIManager = uiManager;
 }
