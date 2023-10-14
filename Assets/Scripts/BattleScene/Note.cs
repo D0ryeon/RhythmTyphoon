@@ -16,7 +16,6 @@ public class Note : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        uiManager = UIManager.instance;
     }
 
     // Update is called once per frame
@@ -47,4 +46,6 @@ public class Note : MonoBehaviour
     }
 
     public void InitializeDirection(Vector2 direction)=>this.direction = direction; 
+
+    public void SetUIManager(UIManager uiManager)=>this.uiManager = uiManager;
 }

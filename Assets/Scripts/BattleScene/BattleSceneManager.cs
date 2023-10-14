@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class BattleSceneManager : MonoBehaviour
 {
-    NoteSpawnManager noteSpawnManager;
-    UIManager uiManager;
-
-
-    private void Awake()
-    {
-        noteSpawnManager = NoteSpawnManager.instance;
-        uiManager = UIManager.instance;
-
-    }
+    [SerializeField] private NoteSpawnManager noteSpawnManager;
+    [SerializeField] private UIManager uiManager;
    
 }
