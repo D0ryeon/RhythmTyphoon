@@ -16,7 +16,8 @@ public class NoteSpawnManager : MonoBehaviour
 
     private Vector2 noteDirection;
 
-    public UIManager UIManager;
+    [SerializeField] private UIManager UIManager;
+
     public void Awake()
     {
         currentNoteIndex = 0;
