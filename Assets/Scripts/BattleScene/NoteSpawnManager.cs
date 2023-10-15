@@ -18,23 +18,26 @@ public class NoteSpawnManager : MonoBehaviour
 
     [SerializeField] private UIManager UIManager;
 
+    private Coroutine noteSpawnCoroutine;
+
+
     public void Awake()
     {
         currentNoteIndex = 0;
         noteSpawnStopDuration = 0f;
         noteDirection = Vector2.left  * 3;
-        StartCoroutine(nameof(NoteSpawnCoroutine));
+        StartNoteSpawnCoroutine();
     }
 
     private IEnumerator NoteSpawnCoroutine()
     {
-        Debug.Log("3");
+        UIManager.UpdateStartCount(3);
         yield return new WaitForSeconds(1.0f);
-        Debug.Log("2");
+        UIManager.UpdateStartCount(2);
         yield return new WaitForSeconds(1.0f);
-        Debug.Log("1");
+        UIManager.UpdateStartCount(1);
         yield return new WaitForSeconds(1.0f);
-
+        UIManager.UpdateStartCount(-1);
         int NoteLength = _noteTiming.Length;
         while (!IsLastNoteSpawn)
         {
@@ -62,11 +65,14 @@ public class NoteSpawnManager : MonoBehaviour
     }
     public void StartNoteSpawnCoroutine()
     {
-        StartCoroutine(NoteSpawnCoroutine());
+        noteSpawnCoroutine = StartCoroutine(NoteSpawnCoroutine());
     }
     public void StopNoteSpawnCoroutine()
     {
-        StopCoroutine(NoteSpawnCoroutine());
+        if (noteSpawnCoroutine != null)
+        {
+            StopCoroutine(noteSpawnCoroutine);
+        }
     }
 
     public void SetUIManager(UIManager uiManager) => this.UIManager = uiManager;

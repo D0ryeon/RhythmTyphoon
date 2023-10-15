@@ -18,6 +18,13 @@ public class Note : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if(uiManager.gameOver)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -46,11 +53,8 @@ public class Note : MonoBehaviour
         }
         else
         {
-            uiManager.UpdateHealth(1);
+            uiManager.UpdateHealth(-1);
         }
-
-       
-
         this.gameObject.SetActive(false);
     }
 

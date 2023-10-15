@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleSceneManager : MonoBehaviour
 {
-    [SerializeField] private NoteSpawnManager noteSpawnManager;
+    [SerializeField] private NoteSpawnManager _noteSpawnManager;
     [SerializeField] private UIManager uiManager;
-    [SerializeField] private HealthSystem healthSystem;
+    [SerializeField] private HealthSystem _healthSystem;
 }

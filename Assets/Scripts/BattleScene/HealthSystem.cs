@@ -4,46 +4,71 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    public int currentHealth;
-    public int maxHealth;
-    public int startHealth;
+    private int cursorForIndex;
+    private int maxLength;
 
     public GameObject healthIcon;
-    public GameObject[] heathIcons;
+    public GameObject[] healthIcons;
+
+    public bool gameOver= false;
 
     [SerializeField] private Vector3 durationBetweenHearts;
     [SerializeField] private Transform firstHealthIconPosition;
 
     [SerializeField] private UIManager UIManager;
-    void Start()
+
+    public void InitalizeHeart(int startHealth, int maxHealth)
     {
-        heathIcons = new GameObject[maxHealth];
-        currentHealth = startHealth;
-        for (int i = 0; i < heathIcons.Length; i++)
+        healthIcons = new GameObject[maxHealth];
+        maxLength = maxHealth;
+        cursorForIndex = startHealth-1;
+        for (int i = 0; i < maxLength; i++)
         {
             Vector3 positionWeight = i * durationBetweenHearts;
             GameObject heathIcon = Instantiate(healthIcon, firstHealthIconPosition.position + positionWeight, Quaternion.identity);
-            heathIcons[i] = heathIcon;
-            if (i > startHealth)
+            healthIcons[i] = heathIcon;
+            if (i > cursorForIndex)
             {
                 Heart heart = heathIcon.GetComponent<Heart>();
                 heart.SetDieState();
             }
         }
-        UIManager.OnUpdateHealth += UpdateIcon;
     }
 
-    public void UpdateIcon(int num)
+    public void UpdateIcon(int changeWeight)
     {
-        currentHealth -= num;
-        for(int i=0; i< heathIcons.Length; i++)
+        //changeWeight >0 , heal
+        if (changeWeight >= 0)
         {
-            Heart heart = heathIcons[i].GetComponent<Heart>();
-            if(i< currentHealth)
-               heart.SetDefaultState();
-            else
-                heart.SetDieState();
+            for (int i = 0; i < changeWeight; i++)
+            {
+                if (cursorForIndex >= maxLength)
+                {
+                    cursorForIndex = maxLength - 1;
+                }
+                Heart heart = healthIcons[cursorForIndex].GetComponent<Heart>();
+                heart.SetDefaultState();
+                cursorForIndex++;
+            }
         }
+        //changeWeight <0 , damage
+        if (changeWeight < 0)
+        {
+            changeWeight *= -1;
+  
+            for (int i = 0; i < changeWeight; i++)
+            {
+                if(cursorForIndex <= 0)
+                {
+                    cursorForIndex = 0;
+                    gameOver = true;
+                }
+                Heart heart = healthIcons[cursorForIndex].GetComponent<Heart>();
+                heart.SetDieState();
+                cursorForIndex--;
+            }
+        }
+      
     }
     public void SetUIManager(UIManager UIManager) => this.UIManager = UIManager;
 }
