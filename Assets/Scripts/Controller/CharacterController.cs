@@ -10,7 +10,7 @@ public class CharacterController : MonoBehaviour
 
     protected virtual void Awake()
     {
-        
+
     }
 
     public void CallMoveEvent(Vector2 direction)

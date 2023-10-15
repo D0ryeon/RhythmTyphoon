@@ -8,6 +8,7 @@ public class CharacterMovementHandler : MonoBehaviour
 
     private Vector2 _movementDirection = Vector2.zero;
     private Rigidbody2D _rigidbody;
+    private IBaseData _data;
 
     private void Awake()
     {
@@ -18,6 +19,14 @@ public class CharacterMovementHandler : MonoBehaviour
     private void Start()
     {
         _controller.OnMoveEvent += Move;
+        if (gameObject.tag == "Player")
+        {
+            _data = DataBase.instance.PlayerData;
+        }
+        else
+        {
+            Debug.Log("Tag를 제대로 설정해 주세요.");
+        }
     }
 
     private void FixedUpdate()
@@ -33,7 +42,7 @@ public class CharacterMovementHandler : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        //direction = direction * _baseData.Speed;
+        direction = direction * _data.Speed;
         _rigidbody.velocity = direction;
     }
 }

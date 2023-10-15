@@ -9,7 +9,7 @@ public class Singletone<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_instance == null)
             {
-                GameObject go = new GameObject(nameof(T));
+                GameObject go = new GameObject(typeof(T).ToString());
                 _instance = go.AddComponent<T>();
                 DontDestroyOnLoad(_instance);
             }

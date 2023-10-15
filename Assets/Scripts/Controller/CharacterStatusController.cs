@@ -5,20 +5,31 @@ using UnityEngine;
 
 public class CharacterStatusController : MonoBehaviour
 {
+    private CharacterStatusController _statusController;
+    private IBaseData _data;
+
     public event Action OnDamage;
     public event Action OnHeal;
     public event Action OnDeath;
 
-    private int _hp;
-
-    private void Start()
+    private void Awake()
     {
-        _hp = GetComponent<IBaseData>().HP;
+        _statusController = GetComponent<CharacterStatusController>();
+        if (gameObject.tag == "Player")
+        {
+            _data = DataBase.instance.PlayerData;
+        }
+        else
+        {
+            Debug.Log("Tag를 제대로 설정해 주세요.");
+        }
     }
 
-    public bool ChangeHealth(int change)
+    public void ChangeHealth(int change)
     {
-        if(change > 0)
+        int hp = _data.HP;
+        hp += change;
+        if (change > 0)
         {
             OnHeal?.Invoke();
         }
@@ -26,11 +37,10 @@ public class CharacterStatusController : MonoBehaviour
         {
             OnDamage?.Invoke();
         }
-        return true;
-    }
 
-    private void CallDeath()
-    {
-        OnDeath?.Invoke();
+        if (hp <= 0)
+        {
+            OnDeath?.Invoke();
+        }
     }
 }

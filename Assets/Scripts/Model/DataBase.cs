@@ -2,10 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataBase : MonoBehaviour
+public class DataBase : Singletone<DataBase>
 {
-    [SerializeField] private IBaseData _baseData;
-    public IBaseData BaseData { get { return _baseData; } }
+    private PlayerData _playerData;
 
+    public PlayerData PlayerData 
+    { 
+        get 
+        { 
+            if(_playerData == null)
+            {
+                _playerData = new PlayerData(name: "EE", maxhp: 100, speed: 10);
+            }
+            return _playerData; 
+        }
+    }
 
+    public void GetPlayerData(string name, int maxhp, int speed)
+    {
+        _playerData = new PlayerData(name, maxhp, speed);
+    }
 }
