@@ -46,7 +46,7 @@ public class Note : MonoBehaviour
             {
                 Vector2 collisionPoint = collision.ClosestPoint(transform.position);
                 float xDistanceFromCollisionPoint = Mathf.Abs(collisionPoint.x - this.transform.position.x);
-                Debug.Log(xDistanceFromCollisionPoint);
+                
                 if (xDistanceFromCollisionPoint < _perfectRange)
                 {
                     Debug.Log("Perfect!");
@@ -71,6 +71,7 @@ public class Note : MonoBehaviour
         {
             uiManager.UpdateNumberOfTimes(UIManager.NoteState.Miss);
             uiManager.UpdateHealth(-1);
+            uiManager.UpdateCombo(-1);
         }
 
         if (lastNote)
@@ -80,7 +81,7 @@ public class Note : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void InitializeDirection(Vector2 direction)=>this.direction = direction; 
+    public void SetDirection(Vector2 direction)=>this.direction = direction; 
 
     public void SetUIManager(UIManager uiManager)=>this.uiManager = uiManager;
 }

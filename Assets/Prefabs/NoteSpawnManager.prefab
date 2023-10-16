@@ -78,9 +78,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _notePrefab: {fileID: 2947797513049664213, guid: 16a774a91d2a6bb44bcf57f609284ba5, type: 3}
   _noteTiming:
-  - 1
   - 0.5
-  - 1
+  - 0.5
+  - 0.5
   - 1
   - 1
   - 1
@@ -91,4 +91,6 @@ MonoBehaviour:
   - 1
   _noteSpawnPositon: {fileID: 8574622630740053822}
   IsLastNoteSpawn: 0
+  noteSpeed: 3
+  noteDirection: {x: 0, y: 0}
   UIManager: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3219612344471884116}
   - component: {fileID: 3088498802347956469}
   - component: {fileID: 223348662012818463}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Note
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _goodRange: 0.5
   _perfectRange: 0.1
+  lastNote: 0
 --- !u!50 &3088498802347956469
 Rigidbody2D:
   serializedVersion: 4

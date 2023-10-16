@@ -74,6 +74,9 @@ public class UIManager : MonoBehaviour
     public void UpdateCombo(int change)
     {
        OnUpdateCombo?.Invoke(change);
+        //Miss, Combo reset
+        if(change == -1) 
+            combo = 0;
         _comboText.text = combo.ToString();
     }
 

@@ -13,8 +13,8 @@ public class NoteSpawnManager : MonoBehaviour
     [SerializeField] Transform _noteSpawnPositon;
 
     public bool IsLastNoteSpawn;
-
-    private Vector2 noteDirection;
+    public float noteSpeed;
+    public Vector2 noteDirection;
 
     [SerializeField] private UIManager UIManager;
 
@@ -56,7 +56,7 @@ public class NoteSpawnManager : MonoBehaviour
             GameObject obj = Instantiate(_notePrefab, _noteSpawnPositon.position, Quaternion.identity);
             Note note = obj.GetComponent<Note>();
             note.SetUIManager(UIManager);
-            note.InitializeDirection(noteDirection);
+            note.SetDirection(noteDirection*noteSpeed);
             note.lastNote = IsLastNoteSpawn;
             yield return new WaitForSeconds(noteSpawnStopDuration);
         }
@@ -83,4 +83,6 @@ public class NoteSpawnManager : MonoBehaviour
     }
 
     public void SetUIManager(UIManager uiManager) => this.UIManager = uiManager;
+
+    public void SetNoteTimin(float[] noteTiming) => _noteTiming = noteTiming;
 }
