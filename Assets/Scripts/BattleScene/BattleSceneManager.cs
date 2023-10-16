@@ -15,11 +15,13 @@ public class BattleSceneManager : MonoBehaviour
         HealthSystem healthSystem = Instantiate(_healthSystem);
 
         noteSpawnManager.SetUIManager(uiManager);
+
         healthSystem.SetUIManager(uiManager);
 
         uiManager.SetHealthSystem(healthSystem);
         uiManager.SetNoteSpawnManager(noteSpawnManager);
         uiManager.InitalizeUIManager();
+
         noteSpawnManager.StartGame();
     }
 }

@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     {
         rb= GetComponent<Rigidbody2D>();
         SetDirections();
+        this.transform.position = DefaultPosition.position;
     }
 
     private void FixedUpdate()

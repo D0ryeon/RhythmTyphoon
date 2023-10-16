@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _notePrefab: {fileID: 2947797513049664213, guid: 16a774a91d2a6bb44bcf57f609284ba5, type: 3}
+  _trapNotePrefab: {fileID: 1421805939005052502, guid: d19abe014893b0c4c96be694f552a070, type: 3}
   _noteTiming:
   - 0.5
   - 0.5
@@ -89,6 +90,7 @@ MonoBehaviour:
   - 0.5
   - 1
   - 1
+  TrapNoteIndex: 0100000002000000030000000a0000000f000000
   _noteSpawnPositon: {fileID: 8574622630740053822}
   IsLastNoteSpawn: 0
   noteSpeed: 3
