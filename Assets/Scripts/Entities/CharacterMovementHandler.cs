@@ -21,7 +21,7 @@ public class CharacterMovementHandler : MonoBehaviour
         _controller.OnMoveEvent += Move;
         if (gameObject.tag == "Player")
         {
-            _data = DataBase.instance.PlayerData;
+            _data = DataBase.Instance.PlayerData;
         }
         else
         {

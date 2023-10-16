@@ -12,7 +12,7 @@ public class DataBase : Singletone<DataBase>
         { 
             if(_playerData == null)
             {
-                _playerData = new PlayerData(name: "EE", maxhp: 100, speed: 10);
+                _playerData = new PlayerData(name: "Test", maxhp: 100, speed: 10);
             }
             return _playerData; 
         }

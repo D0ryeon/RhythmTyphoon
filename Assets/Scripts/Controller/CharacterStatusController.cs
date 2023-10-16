@@ -8,8 +8,8 @@ public class CharacterStatusController : MonoBehaviour
     private CharacterStatusController _statusController;
     private IBaseData _data;
 
-    public event Action OnDamage;
-    public event Action OnHeal;
+    public event Action<int> OnDamage;
+    public event Action<int> OnHeal;
     public event Action OnDeath;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class CharacterStatusController : MonoBehaviour
         _statusController = GetComponent<CharacterStatusController>();
         if (gameObject.tag == "Player")
         {
-            _data = DataBase.instance.PlayerData;
+            _data = DataBase.Instance.PlayerData;
         }
         else
         {
@@ -27,20 +27,18 @@ public class CharacterStatusController : MonoBehaviour
 
     public void ChangeHealth(int change)
     {
-        int hp = _data.HP;
-        hp += change;
-        if (change > 0)
+        if (change >= 0)
         {
-            OnHeal?.Invoke();
+            OnHeal?.Invoke(change);
         }
         else
         {
-            OnDamage?.Invoke();
+            OnDamage?.Invoke(change);
         }
+    }
 
-        if (hp <= 0)
-        {
-            OnDeath?.Invoke();
-        }
+    public void CallDeath()
+    {
+        OnDeath?.Invoke();
     }
 }

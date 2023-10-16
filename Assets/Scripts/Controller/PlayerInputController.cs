@@ -29,7 +29,7 @@ public class PlayerInputController : CharactersController
     public void OnAttack()
     {
         Debug.Log("OnInteraction");
-        CallInteractionEvent();
+        CallAttackEvent();
     }
     
 }
