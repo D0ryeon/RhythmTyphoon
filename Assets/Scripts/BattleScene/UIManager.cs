@@ -40,7 +40,19 @@ public class UIManager : MonoBehaviour
     public int numberOfTimesGood { get; private set; }
     public int numberOfTimesMiss { get; private set; }
 
-    private void Start()
+    //private void Start()
+    //{
+    //    numberOfTimesPerfect = 0;
+    //    numberOfTimesGood = 0;
+    //    numberOfTimesMiss = 0;
+
+    //    _healthSystem.InitalizeHeart(startHealth, maxHealth);
+
+    //    OnUpdateScore += (int change) => { currentScore += change; };
+    //    OnUpdateCombo += (int change) => { combo += change; };
+    //    OnUpdateHealth += _healthSystem.UpdateIcon;
+    //}
+    public void InitalizeUIManager()
     {
         numberOfTimesPerfect = 0;
         numberOfTimesGood = 0;
@@ -92,7 +104,9 @@ public class UIManager : MonoBehaviour
 
                 SetAcitveNumberOfTimes();
                 break;
-            case GameState.GameClear: 
+            case GameState.GameClear:
+                if (gameOver)
+                    break;
                 _gameClearText.gameObject.SetActive(true);
                 _noteSpawnManager.StopNoteSpawnCoroutine();
 
@@ -130,4 +144,6 @@ public class UIManager : MonoBehaviour
         _numberOfTimesMissText.text = numberOfTimesMiss.ToString();
     }
 
+    public void SetNoteSpawnManager(NoteSpawnManager noteSpawnManager)=> _noteSpawnManager = noteSpawnManager;
+    public void SetHealthSystem(HealthSystem healthSystem) => _healthSystem = healthSystem;
 }

@@ -21,14 +21,20 @@ public class NoteSpawnManager : MonoBehaviour
     private Coroutine noteSpawnCoroutine;
 
 
-    public void Awake()
+    //public void Awake()
+    //{
+    //    currentNoteIndex = 0;
+    //    noteSpawnStopDuration = 0f;
+    //    noteDirection = Vector2.left  * 3;
+    //    StartNoteSpawnCoroutine();
+    //}
+    public void StartGame()
     {
         currentNoteIndex = 0;
         noteSpawnStopDuration = 0f;
-        noteDirection = Vector2.left  * 3;
+        noteDirection = Vector2.left * 3;
         StartNoteSpawnCoroutine();
     }
-
     private IEnumerator NoteSpawnCoroutine()
     {
         UIManager.UpdateStartCount(3);
