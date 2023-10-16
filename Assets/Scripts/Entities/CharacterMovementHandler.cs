@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMovementHandler : MonoBehaviour
 {
-    private CharacterController _controller;
+    private CharactersController _controller;
 
     private Vector2 _movementDirection = Vector2.zero;
     private Rigidbody2D _rigidbody;
@@ -12,7 +12,7 @@ public class CharacterMovementHandler : MonoBehaviour
 
     private void Awake()
     {
-        _controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharactersController>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 

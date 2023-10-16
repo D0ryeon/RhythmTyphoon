@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputController : CharacterController
+public class PlayerInputController : CharactersController
 {
     private Camera _camera;
 
@@ -26,7 +26,7 @@ public class PlayerInputController : CharacterController
         CallMenuEvent();
     }
 
-    public void OnInteraction()
+    public void OnAttack()
     {
         Debug.Log("OnInteraction");
         CallInteractionEvent();

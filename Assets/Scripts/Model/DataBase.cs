@@ -18,7 +18,7 @@ public class DataBase : Singletone<DataBase>
         }
     }
 
-    public void GetPlayerData(string name, int maxhp, int speed)
+    public void SetPlayerData(string name, int maxhp, int speed)
     {
         _playerData = new PlayerData(name, maxhp, speed);
     }

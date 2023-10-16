@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharactersController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action OnMenuEvent;
