@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimationController : PlayerAnimations
 {
     private static readonly int _Attack = Animator.StringToHash("Attack");
+    private static readonly int _IsWalk = Animator.StringToHash("IsWalk");
 
     protected override void Awake()
     {
@@ -14,7 +15,7 @@ public class PlayerAnimationController : PlayerAnimations
     void Start()
     {
         controller.OnAttackEvent += Attacking;
-        //controller.OnMoveEvent += Move;
+        controller.OnMoveEvent += Move;
         if (StatusController != null)
         {
             //StatusController.OnDamage += Hit;
@@ -24,10 +25,11 @@ public class PlayerAnimationController : PlayerAnimations
         Debug.Log(controller == null);
     }
 
-    //private void Move(Vector2 obj)
-    //{
-    //    animator.SetBool(IsWalking, obj.magnitude > 0.5f);
-    //}
+    private void Move(Vector2 obj)
+    {
+        Debug.Log("È®ÀÎ");
+        animator.SetBool(_IsWalk, obj.magnitude > 0.5f);
+    }
 
     private void Attacking()
     {

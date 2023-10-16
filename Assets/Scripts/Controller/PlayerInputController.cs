@@ -15,20 +15,17 @@ public class PlayerInputController : CharactersController
 
     public void OnMove(InputValue value)
     {
-        Debug.Log("OnMove");
         Vector2 moveInput = value.Get<Vector2>().normalized;
         CallMoveEvent(moveInput);
     }
 
     public void OnMenu()
     {
-        Debug.Log("OnMenu");
         CallMenuEvent();
     }
 
     public void OnAttack()
     {
-        Debug.Log("CallAttack");
         CallAttackEvent();
     }
     
