@@ -18,16 +18,12 @@ public class PlayerAnimationController : PlayerAnimations
         controller.OnMoveEvent += Move;
         if (StatusController != null)
         {
-            //StatusController.OnDamage += Hit;
-        }
 
-        Debug.Log(animator == null);
-        Debug.Log(controller == null);
+        }
     }
 
     private void Move(Vector2 obj)
     {
-        Debug.Log("È®ÀÎ");
         animator.SetBool(_IsWalk, obj.magnitude > 0.5f);
     }
 
@@ -35,9 +31,4 @@ public class PlayerAnimationController : PlayerAnimations
     {
         animator.SetTrigger(_Attack);
     }
-
-    //private void Hit()
-    //{
-    //    animator.SetBool(IsHit, true);
-    //}
 }
