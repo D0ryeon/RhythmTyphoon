@@ -35,20 +35,28 @@ public class Note : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Vector2 collisionPoint = collision.ClosestPoint(transform.position);
-            float xDistanceFromCollisionPoint = Mathf.Abs(collisionPoint.x - this.transform.position.x);
-            Debug.Log(xDistanceFromCollisionPoint);
-            if (xDistanceFromCollisionPoint < _perfectRange)
+            Player player = collision.GetComponent<Player>();
+            if (player.movigToHitPosition)
             {
-                Debug.Log("Perfect!");
-                uiManager.UpdateScore(100);
-                uiManager.UpdateCombo(1);
+                Vector2 collisionPoint = collision.ClosestPoint(transform.position);
+                float xDistanceFromCollisionPoint = Mathf.Abs(collisionPoint.x - this.transform.position.x);
+                Debug.Log(xDistanceFromCollisionPoint);
+                if (xDistanceFromCollisionPoint < _perfectRange)
+                {
+                    Debug.Log("Perfect!");
+                    uiManager.UpdateScore(100);
+                    uiManager.UpdateCombo(1);
+                }
+                else
+                {
+                    Debug.Log("Good");
+                    uiManager.UpdateScore(50);
+                    uiManager.UpdateCombo(1);
+                }
             }
             else
             {
-                Debug.Log("Good");
-                uiManager.UpdateScore(50);
-                uiManager.UpdateCombo(1);
+                return;
             }
         }
         else
