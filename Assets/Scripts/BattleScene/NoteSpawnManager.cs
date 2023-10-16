@@ -19,6 +19,7 @@ public class NoteSpawnManager : MonoBehaviour
     public Vector2 noteDirection;
 
     [SerializeField] private UIManager UIManager;
+    private ObjectPool ObjectPool;
 
     private Coroutine noteSpawnCoroutine;
 
@@ -51,7 +52,9 @@ public class NoteSpawnManager : MonoBehaviour
             }
             if (currentNoteIndex == IndexTrapNote)
             {
-                GameObject obj = Instantiate(_trapNotePrefab, _noteSpawnPositon.position, Quaternion.identity);
+                GameObject obj = ObjectPool.GetTrapNote();
+                obj.SetActive(true);
+                obj.transform.position = _noteSpawnPositon.position;
                 TrapNote trapNote = obj.GetComponent<TrapNote>();
                 trapNote.lastNote = IsLastNoteSpawn;
                 trapNote.SetUIManager(UIManager);
@@ -61,7 +64,9 @@ public class NoteSpawnManager : MonoBehaviour
             }
             else
             {
-                GameObject obj = Instantiate(_notePrefab, _noteSpawnPositon.position, Quaternion.identity);
+                GameObject obj = ObjectPool.GetNote();
+                obj.SetActive(true);
+                obj.transform.position = _noteSpawnPositon.position;
                 Note note = obj.GetComponent<Note>();
                 note.SetUIManager(UIManager);
                 note.SetDirection(noteDirection * noteSpeed);
@@ -94,5 +99,6 @@ public class NoteSpawnManager : MonoBehaviour
     public void SetUIManager(UIManager uiManager) => this.UIManager = uiManager;
 
     public void SetNoteTimin(float[] noteTiming) => _noteTiming = noteTiming;
+    public void SetObjectPool(ObjectPool pool) => this.ObjectPool = pool;
 
 }

@@ -359,6 +359,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 679033733}
+  - {fileID: 1047511238}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -687,6 +688,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1047511237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1047511238}
+  - component: {fileID: 1047511239}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1047511238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047511237}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 540460381}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1047511239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047511237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2f5759a68367145b4c99ade5c31edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NotePrefab: {fileID: 2947797513049664213, guid: 16a774a91d2a6bb44bcf57f609284ba5, type: 3}
+  NotePoolSize: 10
+  TrapNotePrefab: {fileID: 1421805939005052502, guid: d19abe014893b0c4c96be694f552a070, type: 3}
+  TrapNotePoolSize: 10
 --- !u!1 &1900189146
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +847,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleSceneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
+      propertyPath: _objectPool
+      value: 
+      objectReference: {fileID: 1047511239}
     - target: {fileID: 4885573949006160901, guid: 12f8d243206b5f744948284e097d480f, type: 3}
       propertyPath: m_RootOrder
       value: -1
