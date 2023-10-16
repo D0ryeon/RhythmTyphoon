@@ -18,10 +18,14 @@ public class Note : MonoBehaviour
 
     public bool lastNote= false;
 
+    [SerializeField] private GameObject _perfectZone;
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        Vector3 perfectZoneScale = _perfectZone.transform.localScale;
+        perfectZoneScale.x = _perfectRange *2;
+        _perfectZone.transform.localScale = perfectZoneScale;
     }
 
     private void Update()
