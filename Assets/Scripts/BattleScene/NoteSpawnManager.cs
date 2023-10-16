@@ -51,6 +51,7 @@ public class NoteSpawnManager : MonoBehaviour
             Note note = obj.GetComponent<Note>();
             note.SetUIManager(UIManager);
             note.InitializeDirection(noteDirection);
+            note.lastNote = IsLastNoteSpawn;
             yield return new WaitForSeconds(noteSpawnStopDuration);
         }
     }

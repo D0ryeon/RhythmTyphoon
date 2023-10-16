@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _goodRange: 0.5
-  _perfectRange: 0.2
+  _perfectRange: 0.1
 --- !u!50 &3088498802347956469
 Rigidbody2D:
   serializedVersion: 4
