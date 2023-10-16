@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class TrapNote : MonoBehaviour
 {
+    enum State
+    {
+        Default, Perfect, Good, Miss
+    }
+    State state;
+
     private const string Player = "Player";
     private const string Miss = "Miss";
 
@@ -18,6 +24,8 @@ public class TrapNote : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        state = State.Default;
+        NoteStateChange();
     }
 
     private void Update()
@@ -42,7 +50,8 @@ public class TrapNote : MonoBehaviour
             {
                 uiManager.UpdateCombo(-1);
                 uiManager.UpdateHealth(-1);
-                Debug.Log("Trap Card!");
+                state = State.Miss;
+                NoteStateChange();
             }
             else
             {
@@ -60,4 +69,27 @@ public class TrapNote : MonoBehaviour
     public void SetDirection(Vector2 direction) => this.direction = direction;
 
     public void SetUIManager(UIManager uiManager) => this.uiManager = uiManager;
+
+
+    // 이 밑에서 State에 따라 다른 동작을 하게 하면 됩니다. 
+    private void NoteStateChange()
+    {
+        switch (state)
+        {
+            case State.Default:
+
+                break;
+            case State.Perfect:
+
+                break;
+            case State.Good:
+
+                break;
+            case State.Miss:
+
+                break;
+            default:
+                break;
+        }
+    }
 }

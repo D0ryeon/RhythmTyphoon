@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
+    enum State
+    {
+        Default, Perfect, Good, Miss
+    }
+    State state;
+
     private const string Player = "Player";
     private const string Miss = "Miss";
 
@@ -26,6 +32,8 @@ public class Note : MonoBehaviour
         Vector3 perfectZoneScale = _perfectZone.transform.localScale;
         perfectZoneScale.x = _perfectRange *2;
         _perfectZone.transform.localScale = perfectZoneScale;
+
+        state = State.Default;
     }
 
     private void Update()
@@ -57,6 +65,8 @@ public class Note : MonoBehaviour
                     uiManager.UpdateScore(100);
                     uiManager.UpdateCombo(1);
                     uiManager.UpdateNumberOfTimes(UIManager.NoteState.Perfect);
+                    state = State.Perfect;
+                    NoteStateChange();
                 }
                 else
                 {
@@ -64,6 +74,8 @@ public class Note : MonoBehaviour
                     uiManager.UpdateScore(50);
                     uiManager.UpdateCombo(1);
                     uiManager.UpdateNumberOfTimes(UIManager.NoteState.Good);
+                    state = State.Good;
+                    NoteStateChange();
                 }
             }
             else
@@ -76,6 +88,8 @@ public class Note : MonoBehaviour
             uiManager.UpdateNumberOfTimes(UIManager.NoteState.Miss);
             uiManager.UpdateHealth(-1);
             uiManager.UpdateCombo(-1);
+            state = State.Miss;
+            NoteStateChange();
         }
 
         if (lastNote)
@@ -88,4 +102,28 @@ public class Note : MonoBehaviour
     public void SetDirection(Vector2 direction)=>this.direction = direction; 
 
     public void SetUIManager(UIManager uiManager)=>this.uiManager = uiManager;
+
+    // 이 밑에서 State에 따라 다른 동작을 하게 하면 됩니다. 
+    private void NoteStateChange()
+    {
+        switch(state)
+        {
+            case State.Default: 
+               
+                break;
+            case State.Perfect:
+
+                break;
+            case State.Good:
+
+                break;
+            case State.Miss:
+               
+                break;
+            default:
+                break;
+        }
+    }
+
+  
 }
