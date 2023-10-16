@@ -7,6 +7,7 @@ public class Note : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 direction;
+    private UIManager uiManager;
 
     [SerializeField] private float _goodRange;
     [SerializeField] private float _perfectRange;
@@ -15,9 +16,15 @@ public class Note : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
 
+    private void Update()
+    {
+        if(uiManager.gameOver)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -26,18 +33,32 @@ public class Note : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Vector2 collisionPoint = collision.ClosestPoint(transform.position);
-        float xDistanceFromCollisionPoint = Mathf.Abs(collisionPoint.x - this.transform.position.x);
-        Debug.Log(xDistanceFromCollisionPoint);
-        if (xDistanceFromCollisionPoint < _perfectRange)
+        if (collision.CompareTag("Player"))
         {
-            Debug.Log("Perfect!");
+            Vector2 collisionPoint = collision.ClosestPoint(transform.position);
+            float xDistanceFromCollisionPoint = Mathf.Abs(collisionPoint.x - this.transform.position.x);
+            Debug.Log(xDistanceFromCollisionPoint);
+            if (xDistanceFromCollisionPoint < _perfectRange)
+            {
+                Debug.Log("Perfect!");
+                uiManager.UpdateScore(100);
+                uiManager.UpdateCombo(1);
+            }
+            else
+            {
+                Debug.Log("Good");
+                uiManager.UpdateScore(50);
+                uiManager.UpdateCombo(1);
+            }
         }
         else
         {
-            Debug.Log("Good");
+            uiManager.UpdateHealth(-1);
         }
+        this.gameObject.SetActive(false);
     }
 
     public void InitializeDirection(Vector2 direction)=>this.direction = direction; 
+
+    public void SetUIManager(UIManager uiManager)=>this.uiManager = uiManager;
 }

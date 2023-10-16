@@ -16,20 +16,28 @@ public class NoteSpawnManager : MonoBehaviour
 
     private Vector2 noteDirection;
 
-  
+    [SerializeField] private UIManager UIManager;
+
+    private Coroutine noteSpawnCoroutine;
+
+
     public void Awake()
     {
         currentNoteIndex = 0;
         noteSpawnStopDuration = 0f;
-        noteDirection = Vector2.left;
-    }
-
-    private void Start()
-    {
+        noteDirection = Vector2.left  * 3;
         StartNoteSpawnCoroutine();
     }
+
     private IEnumerator NoteSpawnCoroutine()
     {
+        UIManager.UpdateStartCount(3);
+        yield return new WaitForSeconds(1.0f);
+        UIManager.UpdateStartCount(2);
+        yield return new WaitForSeconds(1.0f);
+        UIManager.UpdateStartCount(1);
+        yield return new WaitForSeconds(1.0f);
+        UIManager.UpdateStartCount(-1);
         int NoteLength = _noteTiming.Length;
         while (!IsLastNoteSpawn)
         {
@@ -41,6 +49,7 @@ public class NoteSpawnManager : MonoBehaviour
             }
             GameObject obj = Instantiate(_notePrefab, _noteSpawnPositon.position, Quaternion.identity);
             Note note = obj.GetComponent<Note>();
+            note.SetUIManager(UIManager);
             note.InitializeDirection(noteDirection);
             yield return new WaitForSeconds(noteSpawnStopDuration);
         }
@@ -56,10 +65,15 @@ public class NoteSpawnManager : MonoBehaviour
     }
     public void StartNoteSpawnCoroutine()
     {
-        StartCoroutine(NoteSpawnCoroutine());
+        noteSpawnCoroutine = StartCoroutine(NoteSpawnCoroutine());
     }
     public void StopNoteSpawnCoroutine()
     {
-        StopCoroutine(NoteSpawnCoroutine());
+        if (noteSpawnCoroutine != null)
+        {
+            StopCoroutine(noteSpawnCoroutine);
+        }
     }
+
+    public void SetUIManager(UIManager uiManager) => this.UIManager = uiManager;
 }
