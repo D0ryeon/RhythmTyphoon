@@ -633,7 +633,7 @@ MonoBehaviour:
   healthIcons: []
   durationBetweenHearts: {x: 1.1, y: 0, z: 0}
   firstHealthIconPosition: {fileID: 214061566}
-  _uiManager: {fileID: 0}
+  _uiManager: {fileID: 1771964218}
 --- !u!4 &253374265
 Transform:
   m_ObjectHideFlags: 0
