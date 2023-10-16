@@ -25,6 +25,4 @@ public class CharactersController : MonoBehaviour
     {
         OnAttackEvent?.Invoke();
     }
-    
-
 }

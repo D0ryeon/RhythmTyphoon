@@ -11,7 +11,7 @@ public class CharacterStatusHandler : MonoBehaviour
 
     private void Awake()
     {
-        this.AddComponent<CharacterStatusController>();
+        _statusController = GetComponent<CharacterStatusController>();
         _playerData = DataBase.Instance.PlayerData;
     }
 
