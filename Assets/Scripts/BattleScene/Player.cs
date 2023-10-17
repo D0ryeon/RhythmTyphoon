@@ -1,72 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-
     [SerializeField] private Transform HitPosition;
     [SerializeField] private Transform DefaultPosition;
 
     private Rigidbody2D rb;
 
-    public bool movigToHitPosition { get; private set; } = false;
-    public bool movingToDefalutPosition { get; private set; } = false;
-    
-    public float swingSpeed = 100.0f;
-    public float returnSpeed = 50.0f;
+    public bool movingToHitPosition  = false;
+    public bool movingToDefaultPosition  = false;
 
-    [SerializeField] private Vector2 direction;
-    [SerializeField] private Vector2 returnDirection;
+    private float lastInputTime;
+    public float inputCooldown = 0.1f; // Set your desired cooldown time here
 
     private void Awake()
     {
-        rb= GetComponent<Rigidbody2D>();
-        SetDirections();
+        rb = GetComponent<Rigidbody2D>();
         this.transform.position = DefaultPosition.position;
     }
 
     private void FixedUpdate()
     {
-        if(!movigToHitPosition && !movingToDefalutPosition)
+        if (movingToHitPosition)
         {
-            //Stop
-            rb.velocity = Vector2.zero;
-            return;
-        }
-        if (movigToHitPosition)
-        {
-            if(this.transform.position.y <= HitPosition.position.y)
+            if (this.transform.position.y <= HitPosition.position.y)
             {
-                movigToHitPosition=false;
-                movingToDefalutPosition =true;
+                movingToHitPosition = false;
+                movingToDefaultPosition = true;
             }
-            // move To note
-            rb.velocity =swingSpeed * Time.deltaTime * direction;
+            // Move to note
+            this.transform.position = HitPosition.position;
         }
-        else if (movingToDefalutPosition)
+        else if (movingToDefaultPosition)
         {
-            // move To defalut position
-            rb.velocity = returnSpeed * Time.deltaTime * returnDirection;
-            if(this.transform.position.y >= DefaultPosition.position.y)
-            {
-                movingToDefalutPosition=false;
-            }
+            // Move to default position
+            this.transform.position = DefaultPosition.position;
+            movingToDefaultPosition = false;
         }
-
-        return;
     }
 
-    private void SetDirections()
-    {
-        direction = (HitPosition.position - DefaultPosition.position).normalized;
-        returnDirection = -direction;
-    }
 
     void OnAttack()
     {
-        movigToHitPosition = true;
-        movingToDefalutPosition = false;
+        // Check if enough time has passed since the last input
+        if (Time.time - lastInputTime >= inputCooldown)
+        {
+            movingToHitPosition = true;
+            movingToDefaultPosition = false;
+            lastInputTime = Time.time;
+        }
     }
 }

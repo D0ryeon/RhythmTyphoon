@@ -38,7 +38,7 @@ public class Note : MonoBehaviour
 
     private void Update()
     {
-        if(uiManager.gameOver)
+        if (uiManager != null && uiManager.gameOver)
         {
             this.gameObject.SetActive(false);
         }
@@ -54,7 +54,7 @@ public class Note : MonoBehaviour
         if (collision.CompareTag(Player))
         {
             Player player = collision.GetComponent<Player>();
-            if (player.movigToHitPosition)
+            if (player.movingToHitPosition)
             {
                 Vector2 collisionPoint = collision.ClosestPoint(transform.position);
                 float xDistanceFromCollisionPoint = Mathf.Abs(collisionPoint.x - this.transform.position.x);
@@ -62,19 +62,26 @@ public class Note : MonoBehaviour
                 if (xDistanceFromCollisionPoint < _perfectRange)
                 {
                     Debug.Log("Perfect!");
-                    uiManager.UpdateScore(100);
-                    uiManager.UpdateCombo(1);
-                    uiManager.UpdateNumberOfTimes(UIManager.NoteState.Perfect);
+                    if(uiManager != null)
+                    {
+                        uiManager.UpdateScore(100);
+                        uiManager.UpdateCombo(1);
+                        uiManager.UpdateNumberOfTimes(UIManager.NoteState.Perfect);
+                    }
+                 
                     state = State.Perfect;
                     NoteStateChange();
                 }
                 else
                 {
                     Debug.Log("Good");
-                    uiManager.UpdateScore(50);
-                    uiManager.UpdateCombo(1);
-                    uiManager.UpdateNumberOfTimes(UIManager.NoteState.Good);
-                    state = State.Good;
+                    if (uiManager != null)
+                    {
+                        uiManager.UpdateScore(50);
+                        uiManager.UpdateCombo(1);
+                        uiManager.UpdateNumberOfTimes(UIManager.NoteState.Good);
+                        state = State.Good;
+                    }
                     NoteStateChange();
                 }
             }
@@ -85,14 +92,17 @@ public class Note : MonoBehaviour
         }
         else if(collision.CompareTag(Miss)) 
         {
-            uiManager.UpdateNumberOfTimes(UIManager.NoteState.Miss);
-            uiManager.UpdateHealth(-1);
-            uiManager.UpdateCombo(-1);
+            if (uiManager != null)
+            {
+                uiManager.UpdateNumberOfTimes(UIManager.NoteState.Miss);
+                uiManager.UpdateHealth(-1);
+                uiManager.UpdateCombo(-1);
+            }
             state = State.Miss;
             NoteStateChange();
         }
 
-        if (lastNote)
+        if (lastNote && uiManager != null)
         {
             uiManager.UpdateGameState(UIManager.GameState.GameClear);
         }

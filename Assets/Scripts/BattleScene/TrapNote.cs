@@ -30,7 +30,7 @@ public class TrapNote : MonoBehaviour
 
     private void Update()
     {
-        if (uiManager.gameOver)
+        if (uiManager != null && uiManager.gameOver)
         {
             this.gameObject.SetActive(false);
         }
@@ -46,10 +46,13 @@ public class TrapNote : MonoBehaviour
         if (collision.CompareTag(Player))
         {
             Player player = collision.GetComponent<Player>();
-            if (player.movigToHitPosition)
+            if (player.movingToHitPosition)
             {
-                uiManager.UpdateCombo(-1);
-                uiManager.UpdateHealth(-1);
+                if (uiManager != null)
+                {
+                    uiManager.UpdateCombo(-1);
+                    uiManager.UpdateHealth(-1);
+                }
                 state = State.Miss;
                 NoteStateChange();
             }
