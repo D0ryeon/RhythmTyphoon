@@ -12,6 +12,10 @@ public class ObjectPool : MonoBehaviour
     private Queue<GameObject> TrapNotePool;
     public int TrapNotePoolSize;
 
+    [SerializeField] private GameObject[] SpecialNotePrefab;
+    private Queue<GameObject> SpecialTrapNotePool;
+    public int SpecialTrapNotePoolSize;
+
     void Start()
     {
         NotePool = new Queue<GameObject>();

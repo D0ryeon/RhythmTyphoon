@@ -1,24 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Authentication.ExtendedProtection;
 using UnityEngine;
+using static Pattern;
 
 public class CreativeMode : MonoBehaviour
 {
+    public enum EventPattern { Trap, Special1, Special2, Special3 }
+    public struct EventData
+    {
+        public float indexTiming;
+        public EventPattern eventPattern;
+    }
+
     public Pattern[] Patterns;
 
-   public Pattern currentPattern;
+    public Pattern currentPattern;
 
-    public float InputTiming1;
-    public float InputTiming2;
-    public float InputTiming3;
+    
+    private float InputTiming1;
+    private float InputTiming2;
+    private float InputTiming3;
+
+    private float SpecialInputTiming1;
+    private float SpecialInputTiming2;
+    private float SpecialInputTiming3;
+
+    public float musicSink;
+
+    public bool recording = false;
 
     public List<float> InputTiming;
-
+    public List<float> SpecialInputTiming;
     public float currentTime;
 
     public List<float> TestTiming;
 
     [SerializeField] private TestNoteSpawn TestNoteSpawn;
+    [SerializeField] private AudioManager AudioManager;
+    [SerializeField] private TestPlayer testPlayer;
 
     private void Start()
     {
@@ -27,17 +47,26 @@ public class CreativeMode : MonoBehaviour
         InputTiming1 = 0;
         InputTiming2 = 0;
         InputTiming3 = 0;
-        if(TestNoteSpawn != null)
-          TestNoteSpawn.StartGame();
       
     }
 
     private void Update()
     {
-        currentTime += Time.deltaTime;
+        if(recording)
+         currentTime += Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnMouseRight()
+    {
+        SpecialInputTiming2 = currentTime;
+        SpecialInputTiming3 = SpecialInputTiming2 - SpecialInputTiming1;
+
+        float SpecialRoundedValue = Mathf.Round(SpecialInputTiming3 * 100.0f) * 0.01f;
+
+        SpecialInputTiming.Add(SpecialRoundedValue);
+        SpecialInputTiming1 = SpecialInputTiming2;
+    }
+    public void OnMouseLeft()
     {
         InputTiming2 = currentTime;
         InputTiming3 = InputTiming2 - InputTiming1;
@@ -48,11 +77,33 @@ public class CreativeMode : MonoBehaviour
         InputTiming1 = InputTiming2;
     }
 
-
-    public void SetList()
+    public void RecordingStart()
     {
-        Debug.Log("SetList");
-        Patterns[0].noteTiming.Clear();
-        Patterns[0].noteTiming = InputTiming;
+        InputTiming.Clear();
+        SpecialInputTiming.Clear();
+        Invoke(nameof(musicStart), 1.0f);
+        recording = true;
+    }
+
+    public void musicStart()
+    {
+        AudioManager.StopMusic();
+        AudioManager.PlayMusic();
+    }
+
+    public void GameStart()
+    {
+        TestNoteSpawn.StartGame();
+
+    }
+
+    public void PauesGame()
+    {
+        AudioManager.PauseMusic();
+        TestNoteSpawn.PauseCorutine();
+    }
+    public void Save()
+    {
+      
     }
 }

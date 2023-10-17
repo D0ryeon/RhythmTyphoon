@@ -13,9 +13,10 @@ public class BattleSceneManager : MonoBehaviour
         NoteSpawnManager noteSpawnManager = Instantiate(_noteSpawnManager);
         UIManager uiManager = Instantiate(_uiManager);
         HealthSystem healthSystem = Instantiate(_healthSystem);
+        ObjectPool objectPool = Instantiate(_objectPool);
 
         noteSpawnManager.SetUIManager(uiManager);
-        noteSpawnManager.SetObjectPool(_objectPool);
+        noteSpawnManager.SetObjectPool(objectPool);
 
         healthSystem.SetUIManager(uiManager);
 

@@ -34,9 +34,4 @@ public class AudioManager : MonoBehaviour
         musicSource.Stop();
     }
 
-    // Start() 함수에서 음악 재생
-    void Start()
-    {
-        Invoke(nameof(PlayMusic), 3.0f);
-    }
 }
