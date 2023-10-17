@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class DataBase : Singletone<DataBase>
 {
+    protected DataBase()
+    {
+    }
+    private GameObject _playerWalk;
+    private GameObject _playerAttack;
     private PlayerData _playerData;
+
+    private GameManager _gameManager;
+
 
     public PlayerData PlayerData 
     { 
@@ -16,6 +24,16 @@ public class DataBase : Singletone<DataBase>
             }
             return _playerData; 
         }
+    }
+
+    public GameObject PlayerWalk { get { return _playerWalk; } }
+    public GameObject PlayerAttack { get { return _playerAttack; } }
+
+    private void Awake()
+    {
+        _gameManager = GameManager.Instance;
+        _playerWalk = Resources.Load<GameObject>("Prefabs/PlayerWalk");
+        _playerAttack = Resources.Load<GameObject>("Prefabs/PlayerAttack");
     }
 
     public void SetPlayerData(string name, int maxhp, int speed)

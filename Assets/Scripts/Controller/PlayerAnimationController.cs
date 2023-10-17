@@ -16,15 +16,16 @@ public class PlayerAnimationController : PlayerAnimations
     {
         controller.OnAttackEvent += Attacking;
         controller.OnMoveEvent += Move;
-        if (StatusController != null)
-        {
+        //if (StatusController != null)
+        //{
 
-        }
+        //}
     }
 
     private void Move(Vector2 obj)
     {
         animator.SetBool(_IsWalk, obj.magnitude > 0.5f);
+        Debug.Log(DataBase.Instance.PlayerData.Name);
     }
 
     private void Attacking()

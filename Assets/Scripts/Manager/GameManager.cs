@@ -1,31 +1,68 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EPlayerPrefabType
+{
+    PlayerWalk,
+    PlayerAttack
+}
+
+[Serializable]
+public struct PlayerCreateInfo
+{
+    public Vector2 Pos;
+    public EPlayerPrefabType prefabType;
+}
+
 public class GameManager : Singletone<GameManager>
 {
-    public bool isRhythmMode = false;
-
-    private GameObject playerWalk;
-    private GameObject playerAttack;
-
-    // Start is called before the first frame update
-    void Start()
+    protected GameManager()
     {
-        playerWalk = Resources.Load<GameObject>("Prefabs/PlayerWalk");
-        playerAttack = Resources.Load<GameObject>("Prefabs/PlayerAttack");
-        //InstantiateGameObject(playerWalk, new Vector2(5, 0));
-        //InstantiateGameObject(playerAttack, new Vector2(-5, 0));
+    }
+
+    [Header("테스트를 위한 변수")]
+    public bool testMond = false;
+    public string userName;
+    public int maxHP;
+    public int speed;
+    public List<PlayerCreateInfo> playerCreateInfos;
+
+    private DataBase _dataBase;
+
+    private void Awake()
+    {
+        _dataBase = DataBase.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(testMond)
+        {
+            if(userName != null && maxHP != 0 && speed != 0)
+                _dataBase.SetPlayerData(userName, maxHP, speed);
+
+            int num = playerCreateInfos.Count;
+            for (int i = 0; i < num; i++)
+            {
+                InstantiateGameObject(playerCreateInfos[i].prefabType, playerCreateInfos[i].Pos);
+            }
+            testMond = false;
+        }
     }
 
-    private void InstantiateGameObject(GameObject gameObject, Vector2 vector2)
+    private void InstantiateGameObject(EPlayerPrefabType prefabType, Vector2 vector2)
     {
-        Instantiate(gameObject, vector2, Quaternion.identity);
+        if(prefabType.ToString() == "PlayerWalk")
+        {
+            Instantiate(_dataBase.PlayerWalk, vector2, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(_dataBase.PlayerAttack, vector2, Quaternion.identity);
+        }
+        
     }
 }
