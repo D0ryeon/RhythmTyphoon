@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1b76d7f3d5f0934e903ebe9f5fef4e5, type: 3}
-  m_Name: EmptyPatternData
+  m_Name: NoteSpawnDate
   m_EditorClassIdentifier: 
-  noteTiming: []
-  Events: []
+  Notes: []
+  MusicName: Test

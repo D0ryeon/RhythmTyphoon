@@ -48,4 +48,14 @@ public class ObjectPool : MonoBehaviour
         return TrapNote;
     }
 
+    public GameObject GetNoteUseType(int type)
+    {
+        if(type == 0)
+            return GetNote();
+        else if(type == 1)
+            return GetTrapNote();
+        else 
+            return GetNote();
+    }
+
 }

@@ -17,7 +17,7 @@
                 {
                     "name": "Attack2",
                     "type": "Button",
-                    "id": "70eff3ba-d561-4208-8fe3-d8b8029f520f",
+                    "id": "17a74599-b778-4409-9d58-a7d0b85c21b2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -49,7 +49,7 @@
                 },
                 {
                     "name": "",
-                    "id": "1001485b-611f-4884-adbb-5e55566677ba",
+                    "id": "7ba7eb30-bb61-41c3-b2b4-f4e1b07ce40d",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",

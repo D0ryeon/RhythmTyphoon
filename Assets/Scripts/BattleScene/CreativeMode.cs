@@ -1,109 +1,131 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Authentication.ExtendedProtection;
+using TMPro;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 using static Pattern;
 
 public class CreativeMode : MonoBehaviour
 {
-    public enum EventPattern { Trap, Special1, Special2, Special3 }
-    public struct EventData
-    {
-        public float indexTiming;
-        public EventPattern eventPattern;
-    }
-
     public Pattern[] Patterns;
-
     public Pattern currentPattern;
 
-    
-    private float InputTiming1;
-    private float InputTiming2;
-    private float InputTiming3;
-
-    private float SpecialInputTiming1;
-    private float SpecialInputTiming2;
-    private float SpecialInputTiming3;
-
-    public float musicSink;
-
-    public bool recording = false;
-
-    public List<float> InputTiming;
-    public List<float> SpecialInputTiming;
-    public float currentTime;
-
-    public List<float> TestTiming;
-
+    [SerializeField] private GameObject TestNoteSpawnPrefab;
     [SerializeField] private TestNoteSpawn TestNoteSpawn;
     [SerializeField] private AudioManager AudioManager;
-    [SerializeField] private TestPlayer testPlayer;
+    [SerializeField] private ObjectPool ObjectPool;
 
+
+    [SerializeField] private Button RecordingStart;
+    [SerializeField] private Button RecordingStop;
+    public bool IsRecording =false;
+
+    [SerializeField] private Button TestCurrentPattern;
+    private float stopWatch;
+
+    [SerializeField] private TextMeshProUGUI CursorToCurrentMusicText;
+    private int CursorToCurrentMusic =0;
+
+    [SerializeField] private Button MusicIndexUP;
+    [SerializeField] private Button MusicIndexDown;
+
+    [SerializeField] private Button SaveButton;
+    [SerializeField] private Button ClearButton;
+
+
+    private void Awake()
+    {
+        GameObject NoteSpawn = Instantiate(TestNoteSpawnPrefab);
+        TestNoteSpawn = NoteSpawn.GetComponent<TestNoteSpawn>(); 
+        TestNoteSpawn.SetObjectPool(ObjectPool);
+    }
     private void Start()
     {
-        currentTime = 0;
+        RecordingStart.onClick.AddListener(OnPushButtonRecordingStart);
+        RecordingStop.onClick.AddListener(OnPushButtonRecordingStop);
+        TestCurrentPattern.onClick.AddListener(OnPushButtonTestCurrentPattern);
 
-        InputTiming1 = 0;
-        InputTiming2 = 0;
-        InputTiming3 = 0;
-      
+        MusicIndexUP.onClick.AddListener(() => UpdateCursorForMusic(1)) ;
+        MusicIndexDown.onClick.AddListener(()=> UpdateCursorForMusic(-1));
+
+        SaveButton.onClick.AddListener(() => SavePatternToOriginal());
+
+        ClearButton.onClick.AddListener(()=> ClearNotesInPrefab()); 
+
+        CursorToCurrentMusicText.text = Patterns[CursorToCurrentMusic].MusicName;
     }
 
     private void Update()
     {
-        if(recording)
-         currentTime += Time.deltaTime;
+        if(IsRecording)
+        {
+            stopWatch += Time.deltaTime;
+        }
+    }
+    private void OnPushButtonRecordingStart()
+    {
+        stopWatch = 0;
+        currentPattern.Notes.Clear();
+        IsRecording = true;
     }
 
-    public void OnMouseRight()
+    private void OnPushButtonRecordingStop()
     {
-        SpecialInputTiming2 = currentTime;
-        SpecialInputTiming3 = SpecialInputTiming2 - SpecialInputTiming1;
-
-        float SpecialRoundedValue = Mathf.Round(SpecialInputTiming3 * 100.0f) * 0.01f;
-
-        SpecialInputTiming.Add(SpecialRoundedValue);
-        SpecialInputTiming1 = SpecialInputTiming2;
+        IsRecording = false;
     }
-    public void OnMouseLeft()
+    private void OnPushButtonTestCurrentPattern()
     {
-        InputTiming2 = currentTime;
-        InputTiming3 = InputTiming2 - InputTiming1;
-
-        float roundedValue = Mathf.Round(InputTiming3 * 100.0f) * 0.01f;
-
-        InputTiming.Add(roundedValue);
-        InputTiming1 = InputTiming2;
+       TestNoteSpawn.SetPattern(currentPattern);
+        TestNoteSpawn.StartNoteSpawn();
     }
 
-    public void RecordingStart()
+    void OnAttack()
     {
-        InputTiming.Clear();
-        SpecialInputTiming.Clear();
-        Invoke(nameof(musicStart), 1.0f);
-        recording = true;
+        float InputTime = stopWatch;
+        Pattern.Note note = new Pattern.Note();
+        note.time = InputTime;
+        note.type = 0;
+        currentPattern.Notes.Add(note);
     }
 
-    public void musicStart()
+    void OnAttack2()
     {
-        AudioManager.StopMusic();
-        AudioManager.PlayMusic();
+        float InputTime = stopWatch;
+        Pattern.Note note = new Pattern.Note();
+        note.time = InputTime;
+        note.type = 1;
+        currentPattern.Notes.Add(note);
     }
 
-    public void GameStart()
+    private void UpdateCursorForMusic(int num)
     {
-        TestNoteSpawn.StartGame();
-
+        CursorToCurrentMusic += num;
+        if(CursorToCurrentMusic >= Patterns.Length)
+        {
+            CursorToCurrentMusic = 0;
+        }
+        if(CursorToCurrentMusic < 0)
+        {
+            CursorToCurrentMusic = Patterns.Length - 1;
+        }
+        CursorToCurrentMusicText.text = Patterns[CursorToCurrentMusic].MusicName;
     }
 
-    public void PauesGame()
+    private void SavePatternToOriginal()
     {
-        AudioManager.PauseMusic();
-        TestNoteSpawn.PauseCorutine();
+        Patterns[CursorToCurrentMusic].Notes.Clear();
+        foreach(var note in currentPattern.Notes)
+        {
+            Patterns[CursorToCurrentMusic].Notes.Add(note);
+        }
     }
-    public void Save()
+
+    private void ClearNotesInPrefab()
     {
-      
+        Patterns[CursorToCurrentMusic].Notes.Clear();
     }
 }
