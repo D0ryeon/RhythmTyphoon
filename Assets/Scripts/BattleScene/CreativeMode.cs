@@ -13,23 +13,27 @@ public class CreativeMode : MonoBehaviour
     public Pattern[] Patterns;
     public Pattern currentPattern;
 
-    [SerializeField] private GameObject TestNoteSpawnPrefab;
+    [SerializeField] private GameObject NoteSpawnManagerPrefab;
     [SerializeField] private GameObject ObjectPoolPrefab;
     [SerializeField] private GameObject AudioManagerPrefab;
     [SerializeField] private GameObject NoteEndZonePrefab;
 
-    [SerializeField] private TestNoteSpawn TestNoteSpawn;
-    [SerializeField] private AudioManager AudioManager;
-    [SerializeField] private ObjectPool ObjectPool;
-    [SerializeField] private NoteEndZone NoteEndZone;
+    private NoteSpawnManager NoteSpawnManager;
+    private AudioManager AudioManager;
+    private ObjectPool ObjectPool;
+    private NoteEndZone NoteEndZone;
 
 
     [SerializeField] private Button RecordingStart;
     [SerializeField] private Button RecordingStop;
-    public bool IsRecording =false;
+    private bool IsRecording =false;
 
     [SerializeField] private Button TestCurrentPattern;
+
+    [SerializeField] private Button StopWatch;
+    [SerializeField] private TextMeshProUGUI StopWatchText;
     private float stopWatch;
+    private bool IsPlaying = false;
 
     [SerializeField] private TextMeshProUGUI CursorToCurrentMusicText;
     private int CursorToCurrentMusic =0;
@@ -46,14 +50,16 @@ public class CreativeMode : MonoBehaviour
     [SerializeField] private Button TestStopButton;
     [SerializeField] private Button RetryButton;
 
+    public List<float> MusicSink = new List<float>();
+
     private void Awake()
     {
         GameObject objectPool = Instantiate(ObjectPoolPrefab);
         ObjectPool = objectPool.GetComponent<ObjectPool>();
 
-        GameObject TestNoteSpawner = Instantiate(TestNoteSpawnPrefab);
-        TestNoteSpawn = TestNoteSpawner.GetComponent<TestNoteSpawn>();
-        TestNoteSpawn.SetObjectPool(ObjectPool);
+        GameObject NoteSpawnManagerer = Instantiate(NoteSpawnManagerPrefab);
+        NoteSpawnManager = NoteSpawnManagerer.GetComponent<NoteSpawnManager>();
+        NoteSpawnManager.SetObjectPool(ObjectPool);
 
         GameObject Audiomanager = Instantiate(AudioManagerPrefab);
         AudioManager = Audiomanager.GetComponent<AudioManager>();
@@ -67,6 +73,7 @@ public class CreativeMode : MonoBehaviour
     {
         RecordingStart.onClick.AddListener(OnPushButtonRecordingStart);
         RecordingStop.onClick.AddListener(OnPushButtonRecordingStop);
+
         TestCurrentPattern.onClick.AddListener(OnPushButtonTestCurrentPattern);
 
         MusicIndexUP.onClick.AddListener(() => UpdateCursorForMusic(1)) ;
@@ -79,21 +86,27 @@ public class CreativeMode : MonoBehaviour
         MusicPlayButton.onClick.AddListener(OnPushStartMusic);
         MusicStopButton.onClick.AddListener(OnPushStopMusic);
 
-        TestStopButton.onClick.AddListener(()=> TestNoteSpawn.StopNoteSpawn());
+        TestStopButton.onClick.AddListener(()=> NoteSpawnManager.StopNoteSpawn());
         TestStopButton.onClick.AddListener(() => NoteEndZone.ClearAllNote());
+        TestStopButton.onClick.AddListener(() => IsPlaying = false) ;
 
-        RetryButton.onClick.AddListener(() => TestNoteSpawn.StopNoteSpawn());
+        RetryButton.onClick.AddListener(() => NoteSpawnManager.StopNoteSpawn());
         RetryButton.onClick.AddListener(() => NoteEndZone.ClearAllNote());
-        RetryButton.onClick.AddListener(() => TestNoteSpawn.StartNoteSpawn());
+        RetryButton.onClick.AddListener(() => NoteSpawnManager.StartNoteSpawn(MusicSink[CursorToCurrentMusic]));
+        RetryButton.onClick.AddListener(() => stopWatch = 0);
+
+        StopWatch.onClick.AddListener(() => stopWatch = 0);
+        StopWatch.onClick.AddListener(() => StopWatchText.text = stopWatch.ToString());
 
         CursorToCurrentMusicText.text = Patterns[CursorToCurrentMusic].MusicName;
     }
 
     private void Update()
     {
-        if(IsRecording)
+        if(IsRecording || IsPlaying)
         {
             stopWatch += Time.deltaTime;
+            StopWatchText.text = stopWatch.ToString();
         }
     }
     // OnPushButton
@@ -110,11 +123,13 @@ public class CreativeMode : MonoBehaviour
     {
         IsRecording = false;
         AudioManager.StopMusic();
+        IsPlaying = false;
     }
     private void OnPushButtonTestCurrentPattern()
     {
-       TestNoteSpawn.SetPattern(currentPattern);
-       TestNoteSpawn.StartNoteSpawn();
+       NoteSpawnManager.SetPattern(currentPattern);
+       NoteSpawnManager.StartNoteSpawn(MusicSink[CursorToCurrentMusic]);
+       IsPlaying = true;
     }
     // 게임에 사용하는 채보로 저장 , Save as Pattern to used in the game
     private void OnPushSaveButton()
@@ -133,10 +148,12 @@ public class CreativeMode : MonoBehaviour
     private void OnPushStartMusic()
     {
         AudioManager.PlayMusic(Patterns[CursorToCurrentMusic].MusicName);
+        IsPlaying = true;   
     }
     private void OnPushStopMusic()
     {
         AudioManager.StopMusic();
+        IsPlaying = false;
     }
 
     #endregion
