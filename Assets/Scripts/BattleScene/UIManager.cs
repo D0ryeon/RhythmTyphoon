@@ -36,6 +36,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private NoteSpawnManager _noteSpawnManager;
     [SerializeField] private HealthSystem _healthSystem;
 
+    private NoteEndZone NoteEndZone;
+
     public int numberOfTimesPerfect { get; private set; }
     public int numberOfTimesGood { get; private set; }
     public int numberOfTimesMiss { get; private set; }
@@ -91,7 +93,7 @@ public class UIManager : MonoBehaviour
         {
             case GameState.GameOver:
                 _gameOverText.gameObject.SetActive(true);
-                _noteSpawnManager.StopNoteSpawnCoroutine();
+                _noteSpawnManager.StopNoteSpawn();
                 gameOver = true;
 
                 SetAcitveNumberOfTimes();
@@ -100,9 +102,9 @@ public class UIManager : MonoBehaviour
                 if (gameOver)
                     break;
                 _gameClearText.gameObject.SetActive(true);
-                _noteSpawnManager.StopNoteSpawnCoroutine();
-
+                _noteSpawnManager.StopNoteSpawn();
                 SetAcitveNumberOfTimes();
+                NoteEndZone.ClearAllNote();
                 break;
             case GameState.Pause: 
                 break;
@@ -138,4 +140,6 @@ public class UIManager : MonoBehaviour
 
     public void SetNoteSpawnManager(NoteSpawnManager noteSpawnManager)=> _noteSpawnManager = noteSpawnManager;
     public void SetHealthSystem(HealthSystem healthSystem) => _healthSystem = healthSystem;
+
+    public void SetNoteEndZone(NoteEndZone noteEndZone)=> NoteEndZone = noteEndZone;
 }

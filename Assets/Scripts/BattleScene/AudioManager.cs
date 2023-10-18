@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] musicClip;
     public Dictionary<string, AudioClip> musicClips;
 
-    private void Start()
+    private void Awake()
     {
         musicClips= new Dictionary<string, AudioClip>();
         musicClips["WIND"] = musicClip[0];
@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayMusic(string name)
     {
+        Debug.Log(name);
         musicSource.clip = musicClips[name];
         musicSource.Play();
     }
