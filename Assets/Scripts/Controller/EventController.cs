@@ -6,35 +6,36 @@ using UnityEngine.EventSystems;
 
 public class EventController : MonoBehaviour
 {
+
     public EventManager eventManager;
     public GameObject eventPanel;
     public GameObject stagePanel;
-    public TextMeshPro eventText;
-    public int eventIndex;
-    public bool isEvent;
+    public GameObject iconPanel;
+    public TextMeshProUGUI eventText;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+
+        public void OnTriggerEnter2D(Collider2D collision)
     {
-
+        eventManager.eventID = collision.GetComponent<EventData>().eventID;
         stagePanel.SetActive(false);
         eventPanel.SetActive(true);
-        Talk(collision.GetComponent<EventData>().eventID);
+        gameObject.SetActive(false);
+        eventManager.Action();
     }
 
-
-
-    void Talk(int id)
+    private void Update()
     {
-        string talkData = eventManager.GetEvent(id, eventIndex);
-        if(talkData == null)
+        Move();
+    }
+
+    
+
+    public void Move()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+
         {
-            isEvent = false;
-            return;
+            iconPanel.SetActive(false);   
         }
-        eventText.text = talkData;
-        //이벤트 애니메이션 추가할 곳
-
-        eventIndex++;
-
     }
 }
