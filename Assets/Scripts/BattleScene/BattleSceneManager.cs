@@ -7,14 +7,16 @@ public class BattleSceneManager : MonoBehaviour
     [SerializeField] private NoteSpawnManager _noteSpawnManager;
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private HealthSystem _healthSystem;
-
+    [SerializeField] private ObjectPool _objectPool; 
     private void Start()
     {
         NoteSpawnManager noteSpawnManager = Instantiate(_noteSpawnManager);
         UIManager uiManager = Instantiate(_uiManager);
         HealthSystem healthSystem = Instantiate(_healthSystem);
+        ObjectPool objectPool = Instantiate(_objectPool);
 
         noteSpawnManager.SetUIManager(uiManager);
+        noteSpawnManager.SetObjectPool(objectPool);
 
         healthSystem.SetUIManager(uiManager);
 
