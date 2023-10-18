@@ -1292,6 +1292,7 @@ GameObject:
   - component: {fileID: 1061921683}
   - component: {fileID: 1061921685}
   - component: {fileID: 1061921684}
+  - component: {fileID: 1061921686}
   m_Layer: 5
   m_Name: EventUI
   m_TagString: Untagged
@@ -1363,6 +1364,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061921682}
   m_CullTransparentMesh: 1
+--- !u!95 &1061921686
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061921682}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 332ab71fd56e28d49b99eaad250b7b51, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1201702217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,7 +1475,6 @@ GameObject:
   - component: {fileID: 1238372251}
   - component: {fileID: 1238372250}
   - component: {fileID: 1238372249}
-  - component: {fileID: 1238372253}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1545,27 +1566,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!95 &1238372253
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1238372248}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 332ab71fd56e28d49b99eaad250b7b51, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1269162206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   eventPanel: {fileID: 1238372248}
   stagePanel: {fileID: 290534264}
   iconPanel: {fileID: 1017809450}
-  anim: {fileID: 1238372253}
+  anim: {fileID: 0}
   eventText: {fileID: 248954013}
   eventName: {fileID: 526044081}
   eventID: 0
