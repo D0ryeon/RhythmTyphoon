@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    [SerializeField] private bool movigToHitPosition = false;
-    [SerializeField] private bool movingToDefalutPosition = false;
+    public bool movigToHitPosition { get; private set; } = false;
+    public bool movingToDefalutPosition { get; private set; } = false;
     
     public float swingSpeed = 100.0f;
     public float returnSpeed = 50.0f;
@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     {
         rb= GetComponent<Rigidbody2D>();
         SetDirections();
+        this.transform.position = DefaultPosition.position;
     }
 
     private void FixedUpdate()
