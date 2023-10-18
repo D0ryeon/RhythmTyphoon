@@ -14,9 +14,14 @@ public class CreativeMode : MonoBehaviour
     public Pattern currentPattern;
 
     [SerializeField] private GameObject TestNoteSpawnPrefab;
+    [SerializeField] private GameObject ObjectPoolPrefab;
+    [SerializeField] private GameObject AudioManagerPrefab;
+    [SerializeField] private GameObject NoteEndZonePrefab;
+
     [SerializeField] private TestNoteSpawn TestNoteSpawn;
     [SerializeField] private AudioManager AudioManager;
     [SerializeField] private ObjectPool ObjectPool;
+    [SerializeField] private NoteEndZone NoteEndZone;
 
 
     [SerializeField] private Button RecordingStart;
@@ -35,11 +40,27 @@ public class CreativeMode : MonoBehaviour
     [SerializeField] private Button SaveButton;
     [SerializeField] private Button ClearButton;
 
+    [SerializeField] private Button MusicPlayButton;
+    [SerializeField] private Button MusicStopButton;
+
+    [SerializeField] private Button TestStopButton;
+    [SerializeField] private Button RetryButton;
+
     private void Awake()
     {
-        GameObject obj = Instantiate(TestNoteSpawnPrefab);
-        TestNoteSpawn = obj.GetComponent<TestNoteSpawn>();
+        GameObject objectPool = Instantiate(ObjectPoolPrefab);
+        ObjectPool = objectPool.GetComponent<ObjectPool>();
+
+        GameObject TestNoteSpawner = Instantiate(TestNoteSpawnPrefab);
+        TestNoteSpawn = TestNoteSpawner.GetComponent<TestNoteSpawn>();
         TestNoteSpawn.SetObjectPool(ObjectPool);
+
+        GameObject Audiomanager = Instantiate(AudioManagerPrefab);
+        AudioManager = Audiomanager.GetComponent<AudioManager>();
+
+        GameObject NoteEndzone= Instantiate(NoteEndZonePrefab);
+        NoteEndZone = NoteEndzone.GetComponent<NoteEndZone>();
+
     }
 
     private void Start()
@@ -51,9 +72,19 @@ public class CreativeMode : MonoBehaviour
         MusicIndexUP.onClick.AddListener(() => UpdateCursorForMusic(1)) ;
         MusicIndexDown.onClick.AddListener(()=> UpdateCursorForMusic(-1));
 
-        SaveButton.onClick.AddListener(() => SavePatternToOriginal());
+        SaveButton.onClick.AddListener(() => OnPushSaveButton());
 
-        ClearButton.onClick.AddListener(()=> ClearNotesInPrefab()); 
+        ClearButton.onClick.AddListener(()=> OnPushClear());
+
+        MusicPlayButton.onClick.AddListener(OnPushStartMusic);
+        MusicStopButton.onClick.AddListener(OnPushStopMusic);
+
+        TestStopButton.onClick.AddListener(()=> TestNoteSpawn.StopNoteSpawn());
+        TestStopButton.onClick.AddListener(() => NoteEndZone.ClearAllNote());
+
+        RetryButton.onClick.AddListener(() => TestNoteSpawn.StopNoteSpawn());
+        RetryButton.onClick.AddListener(() => NoteEndZone.ClearAllNote());
+        RetryButton.onClick.AddListener(() => TestNoteSpawn.StartNoteSpawn());
 
         CursorToCurrentMusicText.text = Patterns[CursorToCurrentMusic].MusicName;
     }
@@ -65,23 +96,53 @@ public class CreativeMode : MonoBehaviour
             stopWatch += Time.deltaTime;
         }
     }
+    // OnPushButton
+    #region
     private void OnPushButtonRecordingStart()
     {
         stopWatch = 0;
         currentPattern.Notes.Clear();
         IsRecording = true;
+        AudioManager.PlayMusic(Patterns[CursorToCurrentMusic].MusicName);
     }
 
     private void OnPushButtonRecordingStop()
     {
         IsRecording = false;
+        AudioManager.StopMusic();
     }
     private void OnPushButtonTestCurrentPattern()
     {
        TestNoteSpawn.SetPattern(currentPattern);
-        TestNoteSpawn.StartNoteSpawn();
+       TestNoteSpawn.StartNoteSpawn();
+    }
+    // 게임에 사용하는 채보로 저장 , Save as Pattern to used in the game
+    private void OnPushSaveButton()
+    {
+        Patterns[CursorToCurrentMusic].Notes.Clear();
+        foreach(var note in currentPattern.Notes)
+        {
+            Patterns[CursorToCurrentMusic].Notes.Add(note);
+        }
+    }
+    // 선택한 게임의 채보 비우기 , Clear Pattern used in game
+    private void OnPushClear()
+    {
+        Patterns[CursorToCurrentMusic].Notes.Clear();
+    }
+    private void OnPushStartMusic()
+    {
+        AudioManager.PlayMusic(Patterns[CursorToCurrentMusic].MusicName);
+    }
+    private void OnPushStopMusic()
+    {
+        AudioManager.StopMusic();
     }
 
+    #endregion
+
+    // MouseInput
+    #region
     void OnAttack()
     {
         Debug.Log("Attack");
@@ -107,6 +168,7 @@ public class CreativeMode : MonoBehaviour
             currentPattern.Notes.Add(note);
         }
     }
+    #endregion
 
     private void UpdateCursorForMusic(int num)
     {
@@ -121,18 +183,9 @@ public class CreativeMode : MonoBehaviour
         }
         CursorToCurrentMusicText.text = Patterns[CursorToCurrentMusic].MusicName;
     }
-
-    private void SavePatternToOriginal()
+    // 화면에 남아있는 노트들 파괴 , 게임 종료 시, NoteEndZone의 콜라이더를 무식하게 확대시켰다가 축소
+    private void ClearNote()
     {
-        Patterns[CursorToCurrentMusic].Notes.Clear();
-        foreach(var note in currentPattern.Notes)
-        {
-            Patterns[CursorToCurrentMusic].Notes.Add(note);
-        }
-    }
-
-    private void ClearNotesInPrefab()
-    {
-        Patterns[CursorToCurrentMusic].Notes.Clear();
+        NoteEndZone.ClearAllNote();
     }
 }
