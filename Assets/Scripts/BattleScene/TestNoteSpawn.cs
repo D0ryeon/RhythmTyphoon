@@ -15,6 +15,7 @@ public class TestNoteSpawn : MonoBehaviour
     public Vector3 direction;
 
     private bool Pause;
+
     public void SetPattern(Pattern pattern)
     {
         InputPattern.Notes = new List<Pattern.Note>(pattern.Notes.Select(note => new Pattern.Note { time = note.time, type = note.type }));

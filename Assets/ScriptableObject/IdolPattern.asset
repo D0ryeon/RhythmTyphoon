@@ -12,33 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b76d7f3d5f0934e903ebe9f5fef4e5, type: 3}
   m_Name: IdolPattern
   m_EditorClassIdentifier: 
-  Notes:
-  - time: 0.6638094
-    type: 0
-  - time: 0.9385753
-    type: 1
-  - time: 1.1699876
-    type: 0
-  - time: 1.50675
-    type: 1
-  - time: 1.7051346
-    type: 0
-  - time: 1.9843796
-    type: 1
-  - time: 2.1695015
-    type: 0
-  - time: 2.3925574
-    type: 1
-  - time: 2.5949173
-    type: 0
-  - time: 3.6876855
-    type: 0
-  - time: 3.8408988
-    type: 0
-  - time: 3.8408988
-    type: 0
-  - time: 3.8408988
-    type: 0
-  - time: 3.8408988
-    type: 0
-  MusicName: Idol
+  Notes: []
+  MusicName: IDOL

@@ -1,34 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Build;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
+[System.Serializable]
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource musicSource; // 음악을 재생할 AudioSource
+    public AudioSource musicSource;
+    public AudioClip[] musicClip;
+    public Dictionary<string, AudioClip> musicClips;
 
-    public AudioClip mp3Music; // AudioClip 변수를 Inspector에서 설정
-
-
-    // 음악 재생 함수
-    public void PlayMusic()
+    private void Start()
     {
-        musicSource.clip = mp3Music;
+        musicClips= new Dictionary<string, AudioClip>();
+        musicClips["WIND"] = musicClip[0];
+        musicClips["IDOL"] = musicClip[1];
+        musicClips["KICKBACK"] = musicClip[2];
+    }
+    public void PlayMusic(string name)
+    {
+        musicSource.clip = musicClips[name];
         musicSource.Play();
     }
 
-    // 음악 일시 정지 함수
     public void PauseMusic()
     {
         musicSource.Pause();
     }
 
-    // 음악 다시 재생 함수
     public void ResumeMusic()
     {
         musicSource.UnPause();
     }
 
-    // 음악 정지 함수
     public void StopMusic()
     {
         musicSource.Stop();
