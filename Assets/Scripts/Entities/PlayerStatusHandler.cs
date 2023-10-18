@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharacterStatusHandler : MonoBehaviour
+public class PlayerStatusHandler : MonoBehaviour
 {
     private CharacterStatusController _statusController;
     private IBaseData _playerData;
+    private HealthSystem _healthSystem;
 
     private void Awake()
     {
         _statusController = GetComponent<CharacterStatusController>();
         _playerData = DataBase.Instance.PlayerData;
+        _healthSystem = GetComponent<HealthSystem>();
     }
 
     private void Start()

@@ -27,7 +27,10 @@ public class GameManager : Singletone<GameManager>
     public string userName;
     public int maxHP;
     public int speed;
+    //[Range(-0.5f, 0.5f)] public float defaultSync;
     public List<PlayerCreateInfo> playerCreateInfos;
+
+    public Action OnRhythmModeEvent;
 
     private DataBase _dataBase;
     private UIManager_Test _uiManager_Test;
@@ -67,4 +70,15 @@ public class GameManager : Singletone<GameManager>
         }
         
     }
+
+    public void CallOnRhythmMode()
+    {
+        OnRhythmModeEvent?.Invoke();
+    }
+
+
+    //void SetSync(float addSync)
+    //{
+
+    //}
 }
