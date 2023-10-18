@@ -32,8 +32,8 @@ public class DataBase : Singletone<DataBase>
     private void Awake()
     {
         _gameManager = GameManager.Instance;
-        _playerWalk = Resources.Load<GameObject>("Prefabs/PlayerWalk");
-        _playerAttack = Resources.Load<GameObject>("Prefabs/PlayerAttack");
+        _playerWalk = Resources.Load<GameObject>("Prefabs/Player/PlayerWalk");
+        _playerAttack = Resources.Load<GameObject>("Prefabs/Player/PlayerAttack");
     }
 
     public void SetPlayerData(string name, int maxhp, int speed)

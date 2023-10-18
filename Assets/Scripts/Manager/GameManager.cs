@@ -30,10 +30,12 @@ public class GameManager : Singletone<GameManager>
     public List<PlayerCreateInfo> playerCreateInfos;
 
     private DataBase _dataBase;
+    private UIManager_Test _uiManager_Test;
 
     private void Awake()
     {
         _dataBase = DataBase.Instance;
+        _uiManager_Test = UIManager_Test.Instance;
     }
 
     // Update is called once per frame
