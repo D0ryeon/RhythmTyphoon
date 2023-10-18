@@ -35,7 +35,7 @@
                 {
                     "name": "Attack2",
                     "type": "Button",
-                    "id": "17a74599-b778-4409-9d58-a7d0b85c21b2",
+                    "id": "51467ec6-d548-4c04-bad9-01d76c43103e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -181,18 +181,29 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardController",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "7ba7eb30-bb61-41c3-b2b4-f4e1b07ce40d",
+                    "id": "e26aef7a-ae1e-42c2-9316-4a97e0729674",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4af4a467-4d9d-46b6-97ca-0dd181187852",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Mouse",
                     "action": "Attack2",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -207,6 +218,17 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Mouse",
+            "bindingGroup": "Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

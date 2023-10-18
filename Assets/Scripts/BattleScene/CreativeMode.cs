@@ -7,7 +7,6 @@ using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
-using static Pattern;
 
 public class CreativeMode : MonoBehaviour
 {
@@ -36,13 +35,13 @@ public class CreativeMode : MonoBehaviour
     [SerializeField] private Button SaveButton;
     [SerializeField] private Button ClearButton;
 
-
     private void Awake()
     {
-        GameObject NoteSpawn = Instantiate(TestNoteSpawnPrefab);
-        TestNoteSpawn = NoteSpawn.GetComponent<TestNoteSpawn>(); 
+        GameObject obj = Instantiate(TestNoteSpawnPrefab);
+        TestNoteSpawn = obj.GetComponent<TestNoteSpawn>();
         TestNoteSpawn.SetObjectPool(ObjectPool);
     }
+
     private void Start()
     {
         RecordingStart.onClick.AddListener(OnPushButtonRecordingStart);
@@ -85,20 +84,28 @@ public class CreativeMode : MonoBehaviour
 
     void OnAttack()
     {
-        float InputTime = stopWatch;
-        Pattern.Note note = new Pattern.Note();
-        note.time = InputTime;
-        note.type = 0;
-        currentPattern.Notes.Add(note);
+        Debug.Log("Attack");
+        if (IsRecording)
+        {
+            float InputTime = stopWatch;
+            Pattern.Note note = new Pattern.Note();
+            note.time = InputTime;
+            note.type = 0;
+            currentPattern.Notes.Add(note);
+        }
     }
 
     void OnAttack2()
     {
-        float InputTime = stopWatch;
-        Pattern.Note note = new Pattern.Note();
-        note.time = InputTime;
-        note.type = 1;
-        currentPattern.Notes.Add(note);
+        Debug.Log("Attack2");
+        if (IsRecording)
+        {
+            float InputTime = stopWatch;
+            Pattern.Note note = new Pattern.Note();
+            note.time = InputTime;
+            note.type = 1;
+            currentPattern.Notes.Add(note);
+        }
     }
 
     private void UpdateCursorForMusic(int num)
