@@ -19,7 +19,11 @@ public class Player : MonoBehaviour
     void OnAttack()
     {
         if (IsChecking)
+        {
+            IsChecking = false;
+            Collider2D.enabled = false;
             StopCoroutine(TimeChekcing);
+        }
         TimeChekcing = StartCoroutine(TimeCheck());
     }
     private IEnumerator TimeCheck()
@@ -35,8 +39,8 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        collision.gameObject.SetActive(false);
          Debug.Log(checkNote);
-        checkNote++;
+         checkNote++;
     }
 }
