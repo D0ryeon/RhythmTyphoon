@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class PlayerData : IBaseData
 {
     private string _playerName;
@@ -11,7 +9,6 @@ public class PlayerData : IBaseData
     public int HP { get { return _hp; } set { _hp = value; } }
     public int MaxHP { get { return _maxHP; } }
     public float Speed { get { return _speed; } }
-
 
     public PlayerData(string name, int maxhp, int speed)
     {

@@ -22,18 +22,14 @@ public class PlayerInputController : CharactersController
 
     public void OnMenu()
     {
+        Debug.Log("OnMenu");
         CallMenuEvent();
     }
 
     public void OnAttack()
     {
-        Debug.Log("test");
-        CallAttackEvent();
+        Debug.Log("OnInteraction");
+        CallInteractionEvent();
     }
     
-    public void OnAction()
-    {
-        Debug.Log("test");
-        CallAttackEvent();
-    }
 }
