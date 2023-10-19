@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public int combo;
     public int maxHealth;
     public int startHealth;
+    public int maxCombo;
     public bool gameOver { get; private set; } = false;
     public bool gameClear { get; private set; } = false;
 
@@ -55,6 +56,9 @@ public class UIManager : MonoBehaviour
         OnUpdateScore += (int change) => { currentScore += change; };
         OnUpdateCombo += (int change) => { combo += change; };
         OnUpdateHealth += _healthSystem.UpdateIcon;
+
+        combo = 0;
+        maxCombo = 0;
     }
   
     public void UpdateScore(int change)
@@ -66,6 +70,8 @@ public class UIManager : MonoBehaviour
     public void UpdateCombo(int change)
     {
        OnUpdateCombo?.Invoke(change);
+        if(combo > maxCombo)
+            maxCombo= combo;
         //Miss, Combo reset
         if(change == -1) 
             combo = 0;
@@ -157,5 +163,6 @@ public class UIManager : MonoBehaviour
         _gameResult.numberOfTimesGood= numberOfTimesGood;
         _gameResult.numberOfTimesMiss = numberOfTimesMiss;
         _gameResult.GameClear = gameClear;
+        _gameResult.maxCombo = maxCombo;
     }
 }
