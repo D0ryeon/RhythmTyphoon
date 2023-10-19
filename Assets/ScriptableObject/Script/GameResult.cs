@@ -11,4 +11,5 @@ public class GameResult : ScriptableObject
     public int numberOfTimesPerfect;
     public int numberOfTimesGood;
     public int numberOfTimesMiss;
+    public int maxCombo;
 }
