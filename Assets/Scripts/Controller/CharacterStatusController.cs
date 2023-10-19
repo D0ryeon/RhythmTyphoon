@@ -27,13 +27,19 @@ public class CharacterStatusController : MonoBehaviour
 
     public void ChangeHealth(int change)
     {
-        if (change >= 0)
+        _data.HP = _data.HP + change > _data.MaxHP ? _data.MaxHP : _data.HP + change;
+        if (_data.HP >= 0)
         {
             OnHeal?.Invoke(change);
         }
         else
         {
             OnDamage?.Invoke(change);
+        }
+
+        if(_data.HP == 0)
+        {
+            CallDeath();
         }
     }
 

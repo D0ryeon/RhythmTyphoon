@@ -13,6 +13,7 @@ public class UIPopup : MonoBehaviour
     [SerializeField] private Button _btnBack;
     [SerializeField] private Button _btnConform;
     [SerializeField] private Button _btnCancel;
+    [SerializeField] private GameObject Popup;
 
     private Action _onConfirm;
 
@@ -40,6 +41,6 @@ public class UIPopup : MonoBehaviour
 
     void Close()
     {
-        gameObject.SetActive(false);
+        Popup.SetActive(false);
     }
 }
