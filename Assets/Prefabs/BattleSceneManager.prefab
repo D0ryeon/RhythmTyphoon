@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &203880471542585870
 MonoBehaviour:
@@ -44,7 +44,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2fb495fcdfbfa4b8fcbd79b34047c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _noteSpawnManager: {fileID: 4921728381869569092, guid: a75377b3eebf9a548ad6dd7a5e7cda21, type: 3}
+  _noteSpawnManagerPrefab: {fileID: 5893427141817790682, guid: 91f280f8ee2df984eaef944c8d7122f7, type: 3}
+  _uiManagerPrefab: {fileID: 360832595690347715, guid: 801f2f99e2cb2c64c89e15000a697589, type: 3}
+  _healthSystemPrefab: {fileID: 6918100252150553071, guid: 9ea5441ca85a3fd428c5629d71c020fe, type: 3}
+  _objectPoolPrefab: {fileID: 3507378058479575076, guid: c35ffd91b799db7408224d64f93b421e, type: 3}
+  _noteEndZonePrefab: {fileID: 4444925146046726293, guid: fbbab53d9ab1200478133b2f5924df7e, type: 3}
+  _audioManagerPrefab: {fileID: 2246341765118675931, guid: 72fea257afabdbf46b3bd528853a8629, type: 3}
+  _noteSpawnManager: {fileID: 1756481399420312839, guid: 91f280f8ee2df984eaef944c8d7122f7, type: 3}
   _uiManager: {fileID: 6024155944480256154, guid: 801f2f99e2cb2c64c89e15000a697589, type: 3}
   _healthSystem: {fileID: 1066887966276876193, guid: 9ea5441ca85a3fd428c5629d71c020fe, type: 3}
   _objectPool: {fileID: 2159550223341332634, guid: c35ffd91b799db7408224d64f93b421e, type: 3}
+  _noteEndZone: {fileID: 2226088656834630638, guid: fbbab53d9ab1200478133b2f5924df7e, type: 3}
+  _audioManager: {fileID: 8820737115372415416, guid: 72fea257afabdbf46b3bd528853a8629, type: 3}
+  Stage:
+  - {fileID: 11400000, guid: 1fb39909b8c135a449dcfd9ee2a58858, type: 2}
+  - {fileID: 11400000, guid: ba7a33cad4f49ed4aa0a3397a5ff7055, type: 2}
+  - {fileID: 11400000, guid: c37f594018d00fb4e97a4eca15d09e44, type: 2}
+  - {fileID: 11400000, guid: f2f8b805ea3f89644ad85dd9da2d38b8, type: 2}
+  MusicSink:
+  - 0
+  - 2.5
+  - 0
+  - 0
+  stageNumber: 1

@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float InputTime = 0.05f;
     private Coroutine TimeChekcing;
     private bool IsChecking;
-  
+
+    public int checkNote = 0;
+
     private void Start()
     {
         Collider2D.enabled = false;
@@ -18,7 +20,7 @@ public class Player : MonoBehaviour
     {
         if (IsChecking)
             StopCoroutine(TimeChekcing);
-        TimeChekcing = StartCoroutine(TimeCheck()); 
+        TimeChekcing = StartCoroutine(TimeCheck());
     }
     private IEnumerator TimeCheck()
     {
@@ -29,5 +31,12 @@ public class Player : MonoBehaviour
 
         IsChecking = false;
         Collider2D.enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+         Debug.Log(checkNote);
+        checkNote++;
     }
 }

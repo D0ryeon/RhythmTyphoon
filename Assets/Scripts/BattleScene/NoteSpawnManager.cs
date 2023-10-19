@@ -57,6 +57,8 @@ public class NoteSpawnManager : MonoBehaviour
             cuTime = nextTime;
             int type = InputPattern.Notes[i].type;
 
+            yield return new WaitForSeconds(duration);
+
             GameObject obj = objectPool.GetNoteUseType(type);
             obj.SetActive(true);
             obj.transform.position = NoteSpawnPosition.position;
@@ -69,7 +71,7 @@ public class NoteSpawnManager : MonoBehaviour
                 noteBasic.lastNote = true;
             }
 
-            yield return new WaitForSeconds(duration);
+         
         }
     }
 

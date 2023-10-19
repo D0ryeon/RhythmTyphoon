@@ -116,7 +116,7 @@ public class CreativeMode : MonoBehaviour
         stopWatch = 0;
         currentPattern.Notes.Clear();
         IsRecording = true;
-        AudioManager.PlayMusic(Patterns[CursorToCurrentMusic].MusicName);
+        AudioManager.PlayMusic(Patterns[CursorToCurrentMusic].MusicName , 1.0f);
     }
 
     private void OnPushButtonRecordingStop()

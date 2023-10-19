@@ -53,10 +53,10 @@ public class BattleSceneManager : MonoBehaviour
 
     private void Start()
     {
-        _audioManager.PlayMusic(Stage[stageNumber].MusicName);
+        _audioManager.PlayMusic(Stage[stageNumber].MusicName, MusicSink[stageNumber]);
 
         _noteSpawnManager.SetPattern(Stage[stageNumber]);
-        _noteSpawnManager.StartNoteSpawn(MusicSink[stageNumber]);
+        _noteSpawnManager.StartNoteSpawn(0);
     }
 
 
