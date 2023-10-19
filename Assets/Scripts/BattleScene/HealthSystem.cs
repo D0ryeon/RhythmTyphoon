@@ -16,6 +16,8 @@ public class HealthSystem : MonoBehaviour
 
     [SerializeField] private UIManager _uiManager;
 
+    private IBaseData _playerData;
+
     public void InitalizeHeart(int startHealth, int maxHealth)
     {
         healthIcons = new GameObject[maxHealth];
@@ -32,6 +34,8 @@ public class HealthSystem : MonoBehaviour
                 heart.SetDieState();
             }
         }
+
+        _playerData = DataBase.Instance.PlayerData;
     }
 
     public void UpdateIcon(int changeWeight)
@@ -70,4 +74,21 @@ public class HealthSystem : MonoBehaviour
       
     }
     public void SetUIManager(UIManager UIManager) => this._uiManager = UIManager;
+
+    public void AddIcon(int change)
+    {
+        int updateHP = _playerData.HP;
+        for (int i = cursorForIndex; i < updateHP; i++)
+        {
+            if (cursorForIndex >= maxLength)
+            {
+                cursorForIndex = maxLength - 1;
+            }
+            Heart heart = healthIcons[cursorForIndex].GetComponent<Heart>();
+            heart.SetDefaultState();
+            cursorForIndex++;
+        }
+    }
+
+
 }
