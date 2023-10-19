@@ -11,12 +11,6 @@ public class DataBase : Singletone<DataBase>
     private GameObject _playerAttack;
     private PlayerData _playerData;
     private GameManager _gameManager;
-    private float _defaultSync;
-    private float _totalSync;
-    private float _addSync;
-
-    private float DefaultSync { get { return _defaultSync; } }
-    public float TotalSync { get { return _totalSync; } }
 
     public PlayerData PlayerData 
     { 
@@ -43,11 +37,5 @@ public class DataBase : Singletone<DataBase>
     public void SetPlayerData(string name, int maxhp, int speed)
     {
         _playerData = new PlayerData(name, maxhp, speed);
-    }
-
-    private void OnSyncChange(float value)
-    {
-        _addSync = value;
-        _totalSync = _defaultSync + _addSync;
     }
 }

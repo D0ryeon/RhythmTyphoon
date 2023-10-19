@@ -44,22 +44,4 @@ public class GameManager : Singletone<GameManager>
     {
         _dataBase = DataBase.Instance;
     }
-
-    private void InstantiateGameObject(EPlayerPrefabType prefabType, Vector2 vector2)
-    {
-        if(prefabType.ToString() == "PlayerWalk")
-        {
-            Instantiate(_dataBase.PlayerWalk, vector2, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(_dataBase.PlayerAttack, vector2, Quaternion.identity);
-        }
-        
-    }
-
-    public void CallOnRhythmMode()
-    {
-        OnRhythmModeEvent?.Invoke();
-    }
 }
