@@ -9,20 +9,14 @@ public class Note : NoteBasic
 
     [SerializeField] private float _goodRange;
     [SerializeField] private float _perfectRange;
-    [SerializeField] private GameObject _perfectZone;
     // Start is called before the first frame update
     protected override void Awake()
     {
         base.Awake();
 
-        if (_perfectZone != null)
-        {
-            if (_perfectRange == 0)
-                _perfectRange = 0.1f;
+        if (_perfectRange == 0)
+            _perfectRange = 0.1f;
 
-            Vector3 perfectZoneScale = new Vector3(_perfectRange, 1, 1);
-            _perfectZone.transform.localScale = perfectZoneScale;
-        }
     }
 
     protected override void FixedUpdate()

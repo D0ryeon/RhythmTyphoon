@@ -25,7 +25,8 @@ public class BattleSceneManager : MonoBehaviour
 
     [SerializeField] private GameResult _gameResult;
 
-   private void Awake()
+
+    private void Awake()
     {
         GameObject noteSpawnManagerObj = Instantiate(_noteSpawnManagerPrefab);
         GameObject uiManagerObj = Instantiate(_uiManagerPrefab);

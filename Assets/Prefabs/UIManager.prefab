@@ -49,7 +49,8 @@ MonoBehaviour:
   currentScore: 0
   combo: 0
   maxHealth: 8
-  startHealth: 2
+  startHealth: 8
+  maxCombo: 0
   _scoreText: {fileID: 6465559865462495714}
   _comboText: {fileID: 6764159228549077301}
   _startCountText: {fileID: 7750031720398036827}
