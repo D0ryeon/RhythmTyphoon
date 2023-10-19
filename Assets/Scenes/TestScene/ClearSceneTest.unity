@@ -199,6 +199,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164986886}
   m_CullTransparentMesh: 1
+--- !u!1 &174589555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174589557}
+  - component: {fileID: 174589556}
+  m_Layer: 0
+  m_Name: GameReslutManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &174589556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174589555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83688f588bd74d40a010892adc08aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameResult: {fileID: 11400000, guid: 34536eb17c6b9a24f8bc9780c41f7234, type: 2}
+  ScoreText: {fileID: 1131122366}
+  NumberOfTimes_Perfect: {fileID: 1173124043}
+  NumberOfTimtes_Good: {fileID: 432712909}
+  NumberOfTimtes_Miss: {fileID: 1926225633}
+  GameClear: {fileID: 374661664}
+--- !u!4 &174589557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174589555}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 850.66547, y: 536.5126, z: 0.35000816}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229605585
 GameObject:
   m_ObjectHideFlags: 0

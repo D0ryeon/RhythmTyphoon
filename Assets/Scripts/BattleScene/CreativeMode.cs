@@ -52,6 +52,10 @@ public class CreativeMode : MonoBehaviour
 
     public List<float> MusicSink = new List<float>();
 
+    public int LeftClick = 0;
+    public int RightClick = 0;
+    public int TotalClick = 0;
+
     private void Awake()
     {
         GameObject objectPool = Instantiate(ObjectPoolPrefab);
@@ -116,7 +120,11 @@ public class CreativeMode : MonoBehaviour
         stopWatch = 0;
         currentPattern.Notes.Clear();
         IsRecording = true;
-        AudioManager.PlayMusic(Patterns[CursorToCurrentMusic].MusicName);
+        AudioManager.PlayMusic(Patterns[CursorToCurrentMusic].MusicName , 1.0f);
+
+        LeftClick = 0;
+        RightClick = 0;
+        TotalClick = 0; 
     }
 
     private void OnPushButtonRecordingStop()
@@ -128,8 +136,9 @@ public class CreativeMode : MonoBehaviour
     private void OnPushButtonTestCurrentPattern()
     {
        NoteSpawnManager.SetPattern(currentPattern);
-       NoteSpawnManager.StartNoteSpawn(MusicSink[CursorToCurrentMusic]);
+       NoteSpawnManager.StartNoteSpawn(0);
        IsPlaying = true;
+        AudioManager.PlayMusic(Patterns[CursorToCurrentMusic].MusicName, MusicSink[CursorToCurrentMusic]);
     }
     // 게임에 사용하는 채보로 저장 , Save as Pattern to used in the game
     private void OnPushSaveButton()
@@ -162,7 +171,6 @@ public class CreativeMode : MonoBehaviour
     #region
     void OnAttack()
     {
-        Debug.Log("Attack");
         if (IsRecording)
         {
             float InputTime = stopWatch;
@@ -170,12 +178,12 @@ public class CreativeMode : MonoBehaviour
             note.time = InputTime;
             note.type = 0;
             currentPattern.Notes.Add(note);
+            LeftClick++;
         }
     }
 
     void OnAttack2()
     {
-        Debug.Log("Attack2");
         if (IsRecording)
         {
             float InputTime = stopWatch;
@@ -183,6 +191,7 @@ public class CreativeMode : MonoBehaviour
             note.time = InputTime;
             note.type = 1;
             currentPattern.Notes.Add(note);
+            RightClick++;
         }
     }
     #endregion
