@@ -42,8 +42,9 @@ public class UIManager : MonoBehaviour
     public int numberOfTimesGood { get; private set; }
     public int numberOfTimesMiss { get; private set; }
 
-   
-    public void InitalizeUIManager()
+    [SerializeField] private GameResult _gameResult;
+
+  public void InitalizeUIManager()
     {
         numberOfTimesPerfect = 0;
         numberOfTimesGood = 0;
@@ -142,4 +143,6 @@ public class UIManager : MonoBehaviour
     public void SetHealthSystem(HealthSystem healthSystem) => _healthSystem = healthSystem;
 
     public void SetNoteEndZone(NoteEndZone noteEndZone)=> NoteEndZone = noteEndZone;
+
+    public void SetGameResult(GameResult gameResult)=> _gameResult = gameResult;
 }
