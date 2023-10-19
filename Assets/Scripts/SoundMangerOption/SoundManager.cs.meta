@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 41c64fa0d583f4047bd25d43bd326e62
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - masterVolumeSlider: {fileID: 6808428551348685132, guid: d6e26efc13464ea46bd778b34f406775, type: 3}
+  - playerVolumeSlider: {fileID: 6255296508053584168, guid: 30ed66a3cf99f874d8273bb6f260ab3f, type: 3}
+  - effectVolumeSlider: {fileID: 7377868163952888941, guid: c987360286dece446980d450cab9d9e4, type: 3}
+  - backgroundAudioSource: {instanceID: 0}
+  - playerAudioSource: {instanceID: 0}
+  - effectAudioSource: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
