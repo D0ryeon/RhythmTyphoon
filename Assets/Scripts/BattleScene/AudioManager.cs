@@ -19,10 +19,28 @@ public class AudioManager : MonoBehaviour
         musicClips["IDOL"] = musicClip[1];
         musicClips["KICKBACK"] = musicClip[2];
     }
+    public void PlayMusic(string name , float musicSink)
+    {
+        Debug.Log(name);
+        if (musicClips.ContainsKey(name))
+        {
+            musicSource.clip = musicClips[name];
+            Invoke(nameof(PlayMusicDirect), musicSink);
+        }
+        else
+        {
+            Debug.Log($"{name} 이라는 제목의 곡은 존재하지 않습니다.");
+        } 
+    }
+
     public void PlayMusic(string name)
     {
         Debug.Log(name);
         musicSource.clip = musicClips[name];
+       PlayMusicDirect();
+    }
+    public void PlayMusicDirect()
+    {
         musicSource.Play();
     }
 

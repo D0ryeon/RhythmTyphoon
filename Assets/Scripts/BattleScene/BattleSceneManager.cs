@@ -23,7 +23,9 @@ public class BattleSceneManager : MonoBehaviour
     [SerializeField] private float[] MusicSink;
     [SerializeField] private int stageNumber =0;
 
-    private void Awake()
+    [SerializeField] private GameResult _gameResult;
+
+   private void Awake()
     {
         GameObject noteSpawnManagerObj = Instantiate(_noteSpawnManagerPrefab);
         GameObject uiManagerObj = Instantiate(_uiManagerPrefab);
@@ -48,15 +50,17 @@ public class BattleSceneManager : MonoBehaviour
         _uiManager.SetNoteSpawnManager(_noteSpawnManager);
         _uiManager.SetNoteEndZone(_noteEndZone);
         _uiManager.InitalizeUIManager();
+        _uiManager.SetGameResult(_gameResult);
 
     }
 
     private void Start()
     {
-        _audioManager.PlayMusic(Stage[stageNumber].MusicName);
+        _audioManager.PlayMusic(Stage[stageNumber].MusicName, MusicSink[stageNumber]);
 
         _noteSpawnManager.SetPattern(Stage[stageNumber]);
-        _noteSpawnManager.StartNoteSpawn(MusicSink[stageNumber]);
+        _noteSpawnManager.StartNoteSpawn(0);
+
     }
 
 

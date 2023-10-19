@@ -32,7 +32,7 @@ Transform:
   - {fileID: 765273414317235405}
   - {fileID: 1003287746982318657}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6024155944480256154
 MonoBehaviour:
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScore: 0
   combo: 0
-  maxHealth: 5
-  startHealth: 3
+  maxHealth: 8
+  startHealth: 2
   _scoreText: {fileID: 6465559865462495714}
   _comboText: {fileID: 6764159228549077301}
   _startCountText: {fileID: 7750031720398036827}
@@ -60,6 +60,7 @@ MonoBehaviour:
   _numberOfTimesMissText: {fileID: 4445848394387520013}
   _noteSpawnManager: {fileID: 0}
   _healthSystem: {fileID: 0}
+  _gameResult: {fileID: 0}
 --- !u!1 &552166206122874399
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2869649427686301171
 RectTransform:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NotePrefab: {fileID: 2947797513049664213, guid: 16a774a91d2a6bb44bcf57f609284ba5, type: 3}
-  NotePoolSize: 10
+  NotePoolSize: 30
   TrapNotePrefab: {fileID: 1421805939005052502, guid: d19abe014893b0c4c96be694f552a070, type: 3}
   TrapNotePoolSize: 10
   SpecialNotePrefab: []

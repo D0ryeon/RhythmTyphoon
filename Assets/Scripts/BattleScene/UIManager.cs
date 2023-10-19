@@ -42,8 +42,9 @@ public class UIManager : MonoBehaviour
     public int numberOfTimesGood { get; private set; }
     public int numberOfTimesMiss { get; private set; }
 
-   
-    public void InitalizeUIManager()
+    [SerializeField] private GameResult _gameResult;
+
+  public void InitalizeUIManager()
     {
         numberOfTimesPerfect = 0;
         numberOfTimesGood = 0;
@@ -95,8 +96,9 @@ public class UIManager : MonoBehaviour
                 _gameOverText.gameObject.SetActive(true);
                 _noteSpawnManager.StopNoteSpawn();
                 gameOver = true;
-
+                gameClear = false;
                 SetAcitveNumberOfTimes();
+                RecordGameResult();
                 break;
             case GameState.GameClear:
                 if (gameOver)
@@ -104,6 +106,9 @@ public class UIManager : MonoBehaviour
                 _gameClearText.gameObject.SetActive(true);
                 _noteSpawnManager.StopNoteSpawn();
                 SetAcitveNumberOfTimes();
+                gameClear = true;
+                gameOver = false;
+                RecordGameResult();
                 NoteEndZone.ClearAllNote();
                 break;
             case GameState.Pause: 
@@ -142,4 +147,15 @@ public class UIManager : MonoBehaviour
     public void SetHealthSystem(HealthSystem healthSystem) => _healthSystem = healthSystem;
 
     public void SetNoteEndZone(NoteEndZone noteEndZone)=> NoteEndZone = noteEndZone;
+
+    public void SetGameResult(GameResult gameResult)=> _gameResult = gameResult;
+
+    private void RecordGameResult()
+    {
+        _gameResult.FinishScore = currentScore;
+        _gameResult.numberOfTimesPerfect = numberOfTimesPerfect;
+        _gameResult.numberOfTimesGood= numberOfTimesGood;
+        _gameResult.numberOfTimesMiss = numberOfTimesMiss;
+        _gameResult.GameClear = gameClear;
+    }
 }

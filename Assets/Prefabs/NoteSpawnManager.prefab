@@ -82,4 +82,4 @@ MonoBehaviour:
   objectPool: {fileID: 0}
   NoteSpawnPosition: {fileID: 879143589240214924}
   InputPattern: {fileID: 11400000, guid: a898d3f77cbd1c94989eff1bbf565546, type: 2}
-  direction: {x: -5, y: 0, z: 0}
+  direction: {x: -8.5, y: 0, z: 0}
