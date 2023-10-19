@@ -7,8 +7,20 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    guid: 7f0ded4b51d437647b99f586a7f0d7b0
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: f3347caa679afae42b5dddfb8c0add25
+    path: Assets/Scenes/StoryScene.unity
+    guid: f1e122d73c262ee419648f0853cd1c84
+  - enabled: 1
+    path: Assets/Scenes/BattleScene.unity
+    guid: 8dc12c5b189ab5c4199bfa6400f381d4
+  - enabled: 1
+    path: Assets/Scenes/SettingScene.unity
+    guid: 27c7f196030717f4aa9fffca7ffd1bc8
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: 04feeb77f79c144459712ff4f1f322d6
+  - enabled: 1
+    path: Assets/Scenes/ClearScene.unity
+    guid: 33962ad60fbfa2f4699f7612e82c0c3a
   m_configObjects: {}
