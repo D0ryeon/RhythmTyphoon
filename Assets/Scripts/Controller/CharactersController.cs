@@ -6,7 +6,7 @@ public class CharactersController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action OnMenuEvent;
-    public event Action OnAttackEvent;
+    public event Action OnInteractionEvent;
 
     protected virtual void Awake()
     {
@@ -21,8 +21,10 @@ public class CharactersController : MonoBehaviour
     {
         OnMenuEvent?.Invoke();
     }
-    public void CallAttackEvent()
+    public void CallInteractionEvent()
     {
-        OnAttackEvent?.Invoke();
+        OnInteractionEvent?.Invoke();
     }
+    
+
 }

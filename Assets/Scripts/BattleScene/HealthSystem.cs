@@ -10,11 +10,12 @@ public class HealthSystem : MonoBehaviour
     public GameObject healthIcon;
     public GameObject[] healthIcons;
 
+    public bool gameOver= false;
 
     [SerializeField] private Vector3 durationBetweenHearts;
     [SerializeField] private Transform firstHealthIconPosition;
 
-    [SerializeField] private UIManager _uiManager;
+    [SerializeField] private UIManager UIManager;
 
     public void InitalizeHeart(int startHealth, int maxHealth)
     {
@@ -60,7 +61,7 @@ public class HealthSystem : MonoBehaviour
                 if(cursorForIndex <= 0)
                 {
                     cursorForIndex = 0;
-                    _uiManager.UpdateGameState(UIManager.GameState.GameOver);
+                    gameOver = true;
                 }
                 Heart heart = healthIcons[cursorForIndex].GetComponent<Heart>();
                 heart.SetDieState();
@@ -69,5 +70,5 @@ public class HealthSystem : MonoBehaviour
         }
       
     }
-    public void SetUIManager(UIManager UIManager) => this._uiManager = UIManager;
+    public void SetUIManager(UIManager UIManager) => this.UIManager = UIManager;
 }
