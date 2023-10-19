@@ -1752,7 +1752,7 @@ MonoBehaviour:
   eventPanel: {fileID: 1238372248}
   stagePanel: {fileID: 290534264}
   iconPanel: {fileID: 1017809450}
-  anim: {fileID: 1061921686}
+  anim: {fileID: 0}
   eventText: {fileID: 248954013}
   eventName: {fileID: 526044081}
   eventID: 0

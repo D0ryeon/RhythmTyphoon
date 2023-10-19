@@ -29,4 +29,9 @@ public class PlayerInputController : CharactersController
         CallAttackEvent();
     }
     
+    public void OnAction()
+    {
+        Debug.Log("test");
+        CallInteractionEvent();
+    }
 }
