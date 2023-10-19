@@ -15,28 +15,37 @@ public class EventManager : MonoBehaviour
     public Animator anim;
     public TextMeshProUGUI eventText;
     public GameObject eventName;
-    
+    public SpriteRenderer nowBackground;
+    public EventData eventCollider;
+    public Sprite[] stageBackground;
+    public int eventID;
+
     private int eventIndex;
     private bool isEvent;
-
-    //수정
-    private int _eventID;
-    private GameManager _gameManager;
-    public int eventID { get { return _eventID; } }
 
     private void Awake()
     {
         talkData = new Dictionary<int, string[]>();
         _controller = GetComponent<CharactersController>();
         GenerateData();
+
     }
 
     private void Start()
     {
         _controller.OnAttackEvent += Action;
+        
+        //GameManager에서 변수 등록 시 사용
+        //StageSpawn(GameManager.Instance.eventID);
+        //아래는 임시
+        StageSpawn(eventID);
+       
+    }
 
-        //수정
-        _gameManager.OnEvnetIDChage += EventIDChange;
+    private void StageSpawn(int eventID)
+    {
+        nowBackground.sprite = stageBackground[eventID-1];
+        eventCollider.eventID = eventID;
     }
 
     private void GenerateData()
@@ -124,9 +133,4 @@ public class EventManager : MonoBehaviour
             eventIndex++;
     }
 
-    //수정
-    private void EventIDChange(int value)
-    {
-        _eventID = value;
-    }
 }

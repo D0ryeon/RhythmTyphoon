@@ -35,22 +35,14 @@ public class GameManager : Singletone<GameManager>
     }
 
     private DataBase _dataBase;
-    private int _eventID;
     private EScene _eNowScene;
 
     public Action OnRhythmModeEvent;
-    public Action<int> OnEvnetIDChage;
-    public int eventID { get { return _eventID; } }
     public EScene ENowScene { get { return _eNowScene; } }
 
     private void Awake()
     {
         _dataBase = DataBase.Instance;
-    }
-
-    private void Start()
-    {
-        OnEvnetIDChage += OnEvnetIDchange;
     }
 
     private void InstantiateGameObject(EPlayerPrefabType prefabType, Vector2 vector2)
@@ -70,19 +62,4 @@ public class GameManager : Singletone<GameManager>
     {
         OnRhythmModeEvent?.Invoke();
     }
-
-    public void CallOnEvenetIDchange(int value)
-    {
-        OnEvnetIDChage?.Invoke(value);
-    }
-
-    private void OnEvnetIDchange(int value)
-    {
-        _eventID = value;
-    }
-
-    //void SetSync(float addSync)
-    //{
-
-    //}
 }

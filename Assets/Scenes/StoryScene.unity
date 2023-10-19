@@ -123,28 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &29108637 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7114144624061232569, guid: 70e5395dd8371dd428bdb81658e029be, type: 3}
-  m_PrefabInstance: {fileID: 611686411}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &29108641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29108637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 177502f5f30c40f46934e1f57696432e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventManager: {fileID: 1282194430}
-  eventPanel: {fileID: 1238372248}
-  stagePanel: {fileID: 290534264}
-  iconPanel: {fileID: 1017809450}
-  eventText: {fileID: 248954013}
 --- !u!1 &222886741
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,6 +823,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5601104705485509578, guid: 70e5395dd8371dd428bdb81658e029be, type: 3}
+      propertyPath: eventText
+      value: 
+      objectReference: {fileID: 248954013}
+    - target: {fileID: 5601104705485509578, guid: 70e5395dd8371dd428bdb81658e029be, type: 3}
+      propertyPath: iconPanel
+      value: 
+      objectReference: {fileID: 1017809450}
+    - target: {fileID: 5601104705485509578, guid: 70e5395dd8371dd428bdb81658e029be, type: 3}
+      propertyPath: eventPanel
+      value: 
+      objectReference: {fileID: 1238372248}
+    - target: {fileID: 5601104705485509578, guid: 70e5395dd8371dd428bdb81658e029be, type: 3}
+      propertyPath: stagePanel
+      value: 
+      objectReference: {fileID: 290534264}
+    - target: {fileID: 5601104705485509578, guid: 70e5395dd8371dd428bdb81658e029be, type: 3}
+      propertyPath: eventManager
+      value: 
+      objectReference: {fileID: 1282194430}
     - target: {fileID: 7114144624061232569, guid: 70e5395dd8371dd428bdb81658e029be, type: 3}
       propertyPath: m_Name
       value: Player
@@ -852,10 +850,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7114144624061232569, guid: 70e5395dd8371dd428bdb81658e029be, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 29108641}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70e5395dd8371dd428bdb81658e029be, type: 3}
 --- !u!1 &902605261
 GameObject:
@@ -1841,7 +1836,13 @@ MonoBehaviour:
   anim: {fileID: 1061921686}
   eventText: {fileID: 248954013}
   eventName: {fileID: 526044081}
-  eventID: 0
+  nowBackground: {fileID: 1574976389}
+  eventCollider: {fileID: 1291613619}
+  stageBackground:
+  - {fileID: 21300000, guid: 90c80e58aa0b04c4d99383176ceb259b, type: 3}
+  - {fileID: 21300000, guid: f3481b7c4621486408389e48d379b601, type: 3}
+  - {fileID: 21300000, guid: eae629b1553e5a547913833354adbe3c, type: 3}
+  eventID: 1
 --- !u!114 &1282194432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1974,7 +1975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c5156250063545855e9f6baf5001f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: 1
+  eventID: 0
 --- !u!1 &1574976388
 GameObject:
   m_ObjectHideFlags: 0
