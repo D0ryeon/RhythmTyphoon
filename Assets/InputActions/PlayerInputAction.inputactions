@@ -192,7 +192,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "Mouse;KeyboardController",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
