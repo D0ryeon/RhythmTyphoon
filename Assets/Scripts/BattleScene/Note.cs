@@ -1,64 +1,103 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public class Note : NoteBasic
 {
-    private Rigidbody2D rb;
-    private Vector2 direction;
-    private UIManager uiManager;
 
     [SerializeField] private float _goodRange;
     [SerializeField] private float _perfectRange;
-
+    [SerializeField] private GameObject _perfectZone;
     // Start is called before the first frame update
-    void Awake()
+    protected override void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
+        base.Awake();
 
-    private void Update()
-    {
-        if(uiManager.gameOver)
+        if (_perfectZone != null)
         {
-            this.gameObject.SetActive(false);
+            if (_perfectRange == 0)
+                _perfectRange = 0.1f;
+
+            Vector3 perfectZoneScale = new Vector3(_perfectRange, 1, 1);
+            _perfectZone.transform.localScale = perfectZoneScale;
         }
     }
-    // Update is called once per frame
-    void FixedUpdate()
+
+    protected override void FixedUpdate()
     {
-        rb.velocity = direction;
+        base.FixedUpdate();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag(Player))
         {
             Vector2 collisionPoint = collision.ClosestPoint(transform.position);
             float xDistanceFromCollisionPoint = Mathf.Abs(collisionPoint.x - this.transform.position.x);
-            Debug.Log(xDistanceFromCollisionPoint);
+
             if (xDistanceFromCollisionPoint < _perfectRange)
             {
-                Debug.Log("Perfect!");
-                uiManager.UpdateScore(100);
-                uiManager.UpdateCombo(1);
+                state = State.Perfect;
+                NoteStateChange();
             }
             else
             {
-                Debug.Log("Good");
-                uiManager.UpdateScore(50);
-                uiManager.UpdateCombo(1);
+                state = State.Good;
+                NoteStateChange();
             }
         }
-        else
+        else if (collision.CompareTag(Miss))
         {
-            uiManager.UpdateHealth(-1);
+            state = State.Miss;
+            NoteStateChange();
+        }
+
+        if (lastNote && uiManager != null)
+        {
+            uiManager.UpdateGameState(UIManager.GameState.GameClear);
         }
         this.gameObject.SetActive(false);
     }
 
-    public void InitializeDirection(Vector2 direction)=>this.direction = direction; 
+    // 이 밑에서 State에 따라 다른 동작을 하게 하면 됩니다. 
+    protected override void NoteStateChange()
+    {
+        if (uiManager != null)
+        {
+            switch (state)
+            {
+                case State.Default:
+                    break;
+                case State.Perfect:
+                    Debug.Log("Perfect!");
 
-    public void SetUIManager(UIManager uiManager)=>this.uiManager = uiManager;
+                    uiManager.UpdateScore(100);
+                    uiManager.UpdateCombo(1);
+                    uiManager.UpdateNumberOfTimes(UIManager.NoteState.Perfect);
+
+                    break;
+                case State.Good:
+                    Debug.Log("Good");
+
+                    uiManager.UpdateScore(50);
+                    uiManager.UpdateCombo(1);
+                    uiManager.UpdateNumberOfTimes(UIManager.NoteState.Good);
+
+                    break;
+                case State.Miss:
+                    uiManager.UpdateNumberOfTimes(UIManager.NoteState.Miss);
+                    uiManager.UpdateHealth(-1);
+                    uiManager.UpdateCombo(-1);
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+
+
 }

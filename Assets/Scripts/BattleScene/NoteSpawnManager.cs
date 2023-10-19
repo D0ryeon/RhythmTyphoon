@@ -1,79 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NoteSpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _notePrefab;
-    [SerializeField] private float[] _noteTiming;
+    [SerializeField] private GameObject[] NotePrefabs;
+    [SerializeField] private ObjectPool objectPool;
 
-    private int currentNoteIndex;
-    private float noteSpawnStopDuration;
+    [SerializeField] private Transform NoteSpawnPosition;
+    public Pattern InputPattern;
+    private Coroutine coroutine;
+    private UIManager UIManager;
+    public Vector3 direction;
 
-    [SerializeField] Transform _noteSpawnPositon;
+    private bool Pause;
 
-    public bool IsLastNoteSpawn;
-
-    private Vector2 noteDirection;
-
-    [SerializeField] private UIManager UIManager;
-
-    private Coroutine noteSpawnCoroutine;
-
-
-    public void Awake()
+    public void SetPattern(Pattern pattern)
     {
-        currentNoteIndex = 0;
-        noteSpawnStopDuration = 0f;
-        noteDirection = Vector2.left  * 3;
-        StartNoteSpawnCoroutine();
+        InputPattern.Notes = new List<Pattern.Note>(pattern.Notes.Select(note => new Pattern.Note { time = note.time, type = note.type }));
     }
 
-    private IEnumerator NoteSpawnCoroutine()
+    public void StartNoteSpawn(float sink)
     {
-        UIManager.UpdateStartCount(3);
-        yield return new WaitForSeconds(1.0f);
-        UIManager.UpdateStartCount(2);
-        yield return new WaitForSeconds(1.0f);
-        UIManager.UpdateStartCount(1);
-        yield return new WaitForSeconds(1.0f);
-        UIManager.UpdateStartCount(-1);
-        int NoteLength = _noteTiming.Length;
-        while (!IsLastNoteSpawn)
+        if(coroutine != null)
         {
-            noteSpawnStopDuration = _noteTiming[currentNoteIndex];
-            currentNoteIndex++;
-            if(currentNoteIndex == NoteLength)
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+        coroutine = StartCoroutine(NoteSpawnCoroutine(sink));
+    }
+
+    public void StopNoteSpawn()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+    }
+    IEnumerator NoteSpawnCoroutine(float sink)
+    {
+
+        yield return new WaitForSeconds(sink);
+
+        float cuTime = 0;
+        int Length = InputPattern.Notes.Count;
+        for (int i = 0; i < Length; i++)
+        {
+            while(Pause)
             {
-                IsLastNoteSpawn = true;
+                yield return null;
             }
-            GameObject obj = Instantiate(_notePrefab, _noteSpawnPositon.position, Quaternion.identity);
-            Note note = obj.GetComponent<Note>();
-            note.SetUIManager(UIManager);
-            note.InitializeDirection(noteDirection);
-            yield return new WaitForSeconds(noteSpawnStopDuration);
+
+            float nextTime = InputPattern.Notes[i].time;
+            float duration= nextTime - cuTime;
+            cuTime = nextTime;
+            int type = InputPattern.Notes[i].type;
+
+            GameObject obj = objectPool.GetNoteUseType(type);
+            obj.SetActive(true);
+            obj.transform.position = NoteSpawnPosition.position;
+            NoteBasic noteBasic= obj.GetComponent<NoteBasic>();
+            noteBasic.SetDirection(direction);
+            noteBasic.SetUIManager(UIManager);
+
+            if(i== Length - 1)
+            {
+                noteBasic.lastNote = true;
+            }
+
+            yield return new WaitForSeconds(duration);
         }
     }
 
-    public void SetNoteTiming(float[] noteTiming)
-    {
-        _noteTiming = noteTiming;
-    }
-    public void SetDirction(Vector2 direction)
-    {
-        noteDirection = direction;
-    }
-    public void StartNoteSpawnCoroutine()
-    {
-        noteSpawnCoroutine = StartCoroutine(NoteSpawnCoroutine());
-    }
-    public void StopNoteSpawnCoroutine()
-    {
-        if (noteSpawnCoroutine != null)
-        {
-            StopCoroutine(noteSpawnCoroutine);
-        }
-    }
+    public void SetUIManager(UIManager manager) => UIManager = manager;
 
-    public void SetUIManager(UIManager uiManager) => this.UIManager = uiManager;
+    public void SetDirection(Vector3 direction) => this.direction = direction;
+
+    public void SetPause(bool state) => Pause = state;
+
+    public void SetObjectPool(ObjectPool objectPool) => this.objectPool = objectPool;
 }
