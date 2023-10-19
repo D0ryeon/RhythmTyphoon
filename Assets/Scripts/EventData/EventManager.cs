@@ -27,7 +27,7 @@ public class EventManager : MonoBehaviour
 
     private void Start()
     {
-        _controller.OnInteractionEvent += Action;
+        _controller.OnAttackEvent += Action;
     }
 
     private void GenerateData()
