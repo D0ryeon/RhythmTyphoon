@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 6056245979303826941}
   - component: {fileID: 3791137116093903938}
   - component: {fileID: 3732823157312392644}
+  - component: {fileID: 5601104705485509578}
   - component: {fileID: 58613130560932004}
   - component: {fileID: 509902601706284735}
   - component: {fileID: 2874174082426290486}
@@ -120,7 +121,7 @@ Transform:
   m_Children:
   - {fileID: 735267438714526595}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6056245979303826941
 MonoBehaviour:
@@ -214,6 +215,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5601104705485509578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114144624061232569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177502f5f30c40f46934e1f57696432e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventManager: {fileID: 0}
+  eventPanel: {fileID: 0}
+  stagePanel: {fileID: 0}
+  iconPanel: {fileID: 0}
+  eventText: {fileID: 0}
 --- !u!114 &58613130560932004
 MonoBehaviour:
   m_ObjectHideFlags: 0
