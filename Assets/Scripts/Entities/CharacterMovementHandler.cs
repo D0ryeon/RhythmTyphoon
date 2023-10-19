@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterMovementHandler : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class CharacterMovementHandler : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private IBaseData _data;
     private SpriteRenderer _renderer;
+    public Animator _anim;
 
     private void Awake()
     {
@@ -30,6 +32,17 @@ public class CharacterMovementHandler : MonoBehaviour
             Debug.Log("Tag를 제대로 설정해 주세요.");
         }
     }
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            _anim.SetBool("Work_right", false);
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            _anim.SetBool("Work_left", false);
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -41,11 +54,11 @@ public class CharacterMovementHandler : MonoBehaviour
     {
         if(direction.x > 0)
         {
-            _renderer.flipX = true;
+            _anim.SetBool("Work_right", true);
         }
         else if(direction.x < 0)
         {
-            _renderer.flipX = false;
+            _anim.SetBool("Work_left",true);
         }
         _movementDirection = direction;
     }
