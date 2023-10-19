@@ -40,15 +40,8 @@ public class UIMain : MonoBehaviour
     void OpenPopup_SetGmaeDifficulty()
     {
         _Popup.SetActive(true);
-        _uiPopup.SetPopup("확인", "정말 결정하시겠습니까?", _SetPlayerStatus.SetPlayerData);
-        try
-        {
-            SceneManager.LoadScene(_nextSceneName.ToString());
-        }
-        catch 
-        {
-            Debug.Log("GameManager에 있는 EScene가 Scene이름과 같아야 됩니다. 수정해 주세요.");
-        }
+        _uiPopup.SetPopup("확인", "정말 결정하시겠습니까?", () => { _SetPlayerStatus.SetPlayerData(); LoadNextScene(); });
+        
     }
 
     void SetPlayerName_Event()
@@ -56,5 +49,17 @@ public class UIMain : MonoBehaviour
         _SetPlayerStatus.SetPlayerName();
         _SetName.SetActive(false);
         _SetGmaeDifficulty.SetActive(true);
+    }
+
+    private void LoadNextScene()
+    {
+        try
+        {
+            SceneManager.LoadScene(_nextSceneName.ToString());
+        }
+        catch
+        {
+            Debug.Log("GameManager에 있는 EScene가 Scene이름과 같아야 됩니다. 수정해 주세요.");
+        }
     }
 }
