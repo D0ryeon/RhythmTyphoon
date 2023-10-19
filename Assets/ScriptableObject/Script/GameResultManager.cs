@@ -21,14 +21,5 @@ public class GameResultManager : MonoBehaviour
         NumberOfTimes_Perfect.text = GameResult.numberOfTimesPerfect.ToString();
         NumberOfTimtes_Good.text = GameResult.numberOfTimesGood.ToString();
         NumberOfTimtes_Miss.text = GameResult.numberOfTimesMiss.ToString();
-
-        if (GameResult.GameClear)
-        {
-            GameClear.text = "Game Clear!";
-        }
-        else
-        {
-            GameClear.text = "Game Over";
-        }
     }
 }
