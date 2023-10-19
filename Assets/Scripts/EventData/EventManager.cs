@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EventManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class EventManager : MonoBehaviour
     private int eventIndex;
     private bool isEvent;
     public int eventID;
+    
 
     private void Awake()
     {
@@ -60,6 +62,7 @@ public class EventManager : MonoBehaviour
         {
             Debug.Log("텍스트 끝");
             isEvent = false;
+            SceneManager.LoadScene("BattleScene");
             return;
         }
         eventText.text = talkData;

@@ -7,7 +7,7 @@ public class BtnManager : MonoBehaviour
 {
     public void SceneChangeStart()
     {
-        SceneManager.LoadScene("StartSceneTest");
+        SceneManager.LoadScene("StoryScene");
     }
 
     public void SceneChangeOption()
