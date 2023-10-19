@@ -18,10 +18,10 @@ public class EventManager : MonoBehaviour
     public SpriteRenderer nowBackground;
     public EventData eventCollider;
     public Sprite[] stageBackground;
+    public int eventID;
 
     private int eventIndex;
     private bool isEvent;
-    public int eventID;
 
     private void Awake()
     {
