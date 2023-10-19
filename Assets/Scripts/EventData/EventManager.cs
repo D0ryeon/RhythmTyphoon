@@ -18,7 +18,11 @@ public class EventManager : MonoBehaviour
     
     private int eventIndex;
     private bool isEvent;
-    public int eventID;
+
+    //수정
+    private int _eventID;
+    private GameManager _gameManager;
+    public int eventID { get { return _eventID; } }
 
     private void Awake()
     {
@@ -30,6 +34,9 @@ public class EventManager : MonoBehaviour
     private void Start()
     {
         _controller.OnAttackEvent += Action;
+
+        //수정
+        _gameManager.OnEvnetIDChage += EventIDChange;
     }
 
     private void GenerateData()
@@ -117,4 +124,9 @@ public class EventManager : MonoBehaviour
             eventIndex++;
     }
 
+    //수정
+    private void EventIDChange(int value)
+    {
+        _eventID = value;
+    }
 }

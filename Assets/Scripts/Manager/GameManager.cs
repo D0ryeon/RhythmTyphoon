@@ -9,6 +9,18 @@ public enum EPlayerPrefabType
     PlayerAttack
 }
 
+public enum EScene
+{
+    StartScene,
+    SettingScene,
+    SetPlayerScene,
+    StoryScene,
+    BattleScene,
+    ClearScene,
+    GameOverScene,
+}
+
+
 [Serializable]
 public struct PlayerCreateInfo
 {
@@ -22,40 +34,23 @@ public class GameManager : Singletone<GameManager>
     {
     }
 
-    [Header("테스트를 위한 변수")]
-    public bool testMond = false;
-    public string userName;
-    public int maxHP;
-    public int speed;
-    //[Range(-0.5f, 0.5f)] public float defaultSync;
-    public List<PlayerCreateInfo> playerCreateInfos;
+    private DataBase _dataBase;
+    private int _eventID;
+    private EScene _eNowScene;
 
     public Action OnRhythmModeEvent;
-
-    private DataBase _dataBase;
-    private UIManager_Test _uiManager_Test;
+    public Action<int> OnEvnetIDChage;
+    public int eventID { get { return _eventID; } }
+    public EScene ENowScene { get { return _eNowScene; } }
 
     private void Awake()
     {
         _dataBase = DataBase.Instance;
-        _uiManager_Test = UIManager_Test.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if(testMond)
-        {
-            if(userName != null && maxHP != 0 && speed != 0)
-                _dataBase.SetPlayerData(userName, maxHP, speed);
-
-            int num = playerCreateInfos.Count;
-            for (int i = 0; i < num; i++)
-            {
-                InstantiateGameObject(playerCreateInfos[i].prefabType, playerCreateInfos[i].Pos);
-            }
-            testMond = false;
-        }
+        OnEvnetIDChage += OnEvnetIDchange;
     }
 
     private void InstantiateGameObject(EPlayerPrefabType prefabType, Vector2 vector2)
@@ -76,6 +71,15 @@ public class GameManager : Singletone<GameManager>
         OnRhythmModeEvent?.Invoke();
     }
 
+    public void CallOnEvenetIDchange(int value)
+    {
+        OnEvnetIDChage?.Invoke(value);
+    }
+
+    private void OnEvnetIDchange(int value)
+    {
+        _eventID = value;
+    }
 
     //void SetSync(float addSync)
     //{
