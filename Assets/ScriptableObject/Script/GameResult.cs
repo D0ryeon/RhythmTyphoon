@@ -8,7 +8,6 @@ public class GameResult : ScriptableObject
 {
     public bool GameClear;
     public int FinishScore;
-    public int MaxCombo;
     public int numberOfTimesPerfect;
     public int numberOfTimesGood;
     public int numberOfTimesMiss;

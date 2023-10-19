@@ -49,7 +49,7 @@ MonoBehaviour:
   currentScore: 0
   combo: 0
   maxHealth: 8
-  startHealth: 8
+  startHealth: 2
   _scoreText: {fileID: 6465559865462495714}
   _comboText: {fileID: 6764159228549077301}
   _startCountText: {fileID: 7750031720398036827}
@@ -60,6 +60,7 @@ MonoBehaviour:
   _numberOfTimesMissText: {fileID: 4445848394387520013}
   _noteSpawnManager: {fileID: 0}
   _healthSystem: {fileID: 0}
+  _gameResult: {fileID: 0}
 --- !u!1 &552166206122874399
 GameObject:
   m_ObjectHideFlags: 0

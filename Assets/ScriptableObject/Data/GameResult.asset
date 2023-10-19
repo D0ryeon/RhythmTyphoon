@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: GameResult
   m_EditorClassIdentifier: 
   GameClear: 0
-  FinishScore: 0
-  MaxCombo: 0
-  numberOfTimesPerfect: 0
-  numberOfTimesGood: 0
+  FinishScore: 500
+  numberOfTimesPerfect: 4
+  numberOfTimesGood: 2
   numberOfTimesMiss: 0
