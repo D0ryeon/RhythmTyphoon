@@ -5,6 +5,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -22,8 +23,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _comboText;
     [SerializeField] private TextMeshProUGUI _startCountText;
-    [SerializeField] private TextMeshProUGUI _gameOverText;
-    [SerializeField] private TextMeshProUGUI _gameClearText;
 
     [SerializeField] private TextMeshProUGUI _numberOfTimesPerfectText;
     [SerializeField] private TextMeshProUGUI _numberOfTimesGoodText;
@@ -52,7 +51,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameResult _gameResult;
 
-  public void InitalizeUIManager()
+    public void InitalizeUIManager()
     {
         numberOfTimesPerfect = 0;
         numberOfTimesGood = 0;
@@ -106,18 +105,19 @@ public class UIManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.GameOver:
-                _gameOverText.gameObject.SetActive(true);
+             
                 _noteSpawnManager.StopNoteSpawn();
                 gameOver = true;
                 gameClear = false;
                 SetAcitveNumberOfTimes();
                 RecordGameResult();
                 audioManager.StopMusic();
+                SceneManager.LoadScene("GameOverScene");
                 break;
             case GameState.GameClear:
                 if (gameOver)
                     break;
-                _gameClearText.gameObject.SetActive(true);
+               
                 _noteSpawnManager.StopNoteSpawn();
                 SetAcitveNumberOfTimes();
                 gameClear = true;
@@ -125,6 +125,7 @@ public class UIManager : MonoBehaviour
                 RecordGameResult();
                 NoteEndZone.ClearAllNote();
                 audioManager.StopMusic();
+                SceneManager.LoadScene("ClearScene");
                 break;
             case GameState.Pause:
                 audioManager.PauseMusic();

@@ -483,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 34536eb17c6b9a24f8bc9780c41f7234, type: 2}
     - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
       propertyPath: stageNumber
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
       propertyPath: Stage.Array.size
@@ -503,7 +503,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: f2f8b805ea3f89644ad85dd9da2d38b8, type: 2}
     - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
       propertyPath: MusicSink.Array.data[1]
-      value: 2.5
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
       propertyPath: MusicSink.Array.data[3]

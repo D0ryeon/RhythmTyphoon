@@ -19,4 +19,14 @@ public class BtnManager : MonoBehaviour
     {
         SceneManager.LoadScene("StoryScene");
     }
+
+    public void SceneChangeClear()
+    {
+        SceneManager.LoadScene("ClearScene");
+    }
+
+    public void SceneChangeGameOver()
+    {
+        SceneManager.LoadScene("GameOverScene");
+    }
 }

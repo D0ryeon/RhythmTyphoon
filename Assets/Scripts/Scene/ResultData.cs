@@ -20,9 +20,4 @@ public class ResultData : MonoBehaviour
         ComboText.text = Combo.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

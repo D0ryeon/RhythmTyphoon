@@ -233,6 +233,7 @@ MonoBehaviour:
   NumberOfTimes_Perfect: {fileID: 1173124043}
   NumberOfTimtes_Good: {fileID: 432712909}
   NumberOfTimtes_Miss: {fileID: 1926225633}
+  MaxComboText: {fileID: 1741462440}
   GameClear: {fileID: 374661664}
 --- !u!4 &174589557
 Transform:
@@ -247,7 +248,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229605585
 GameObject:
@@ -915,53 +916,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!1 &332335286
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 332335288}
-  - component: {fileID: 332335289}
-  m_Layer: 0
-  m_Name: ResultData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &332335288
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332335286}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 455.4541, y: 578.1848, z: -0.7853631}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &332335289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332335286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b7361db5c81274a8997f6cd243610b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayData: {fileID: 360832595690347715, guid: 801f2f99e2cb2c64c89e15000a697589, type: 3}
-  ScoreText: {fileID: 1131122366}
-  ComboText: {fileID: 1741462440}
 --- !u!1 &374661662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,7 +1225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &724358909
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1947,7 +1901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1230599452
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2083,7 +2037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1492572940
 RectTransform:
   m_ObjectHideFlags: 0

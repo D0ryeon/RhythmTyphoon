@@ -209,4 +209,6 @@ MonoBehaviour:
     type: 1
   - time: 78.10376
     type: 0
+  - time: 79.5
+    type: 0
   MusicName: IDOL
