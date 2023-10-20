@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,6 +39,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private HealthSystem _healthSystem;
 
     private NoteEndZone NoteEndZone;
+
+    private AudioManager audioManager;
+
+    [SerializeField] private TextMeshProUGUI _OnPerfectText;
+    [SerializeField] private TextMeshProUGUI _OnGoodText;
+    [SerializeField] private TextMeshProUGUI _OnMissText;
 
     public int numberOfTimesPerfect { get; private set; }
     public int numberOfTimesGood { get; private set; }
@@ -105,6 +112,7 @@ public class UIManager : MonoBehaviour
                 gameClear = false;
                 SetAcitveNumberOfTimes();
                 RecordGameResult();
+                audioManager.StopMusic();
                 break;
             case GameState.GameClear:
                 if (gameOver)
@@ -116,8 +124,10 @@ public class UIManager : MonoBehaviour
                 gameOver = false;
                 RecordGameResult();
                 NoteEndZone.ClearAllNote();
+                audioManager.StopMusic();
                 break;
-            case GameState.Pause: 
+            case GameState.Pause:
+                audioManager.PauseMusic();
                 break;
         }
     }
@@ -164,5 +174,30 @@ public class UIManager : MonoBehaviour
         _gameResult.numberOfTimesMiss = numberOfTimesMiss;
         _gameResult.GameClear = gameClear;
         _gameResult.maxCombo = maxCombo;
+    }
+
+    public void SetAudioManger(AudioManager audioManager)=> this.audioManager = audioManager;
+    
+    public void SetActiveNoteResult(Note.State state)
+    {
+        switch (state)
+        {
+            case NoteBasic.State.Perfect:
+                _OnPerfectText.gameObject.SetActive(true);
+                break;
+            case NoteBasic.State.Good:
+                _OnGoodText.gameObject.SetActive(true);
+                break;
+            case NoteBasic.State.Miss:
+                _OnMissText.gameObject.SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SetActiveFalseNoteResult(TextMeshProUGUI textMeshProUGUI)
+    {
+        textMeshProUGUI.gameObject.SetActive(false);
     }
 }

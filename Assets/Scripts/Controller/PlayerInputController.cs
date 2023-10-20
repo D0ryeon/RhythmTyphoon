@@ -27,13 +27,13 @@ public class PlayerInputController : CharactersController
 
     public void OnAttack()
     {
-        Debug.Log("test");
+     
         CallAttackEvent();
     }
     
     public void OnAction()
     {
-        Debug.Log("test");
+      
         CallAttackEvent();
     }
 }

@@ -8,7 +8,7 @@ public class NoteBasic : MonoBehaviour
 {
     public bool lastNote = false;
 
-    protected enum State
+    public enum State
     {
         Default, Perfect, Good, Miss
     }

@@ -52,7 +52,7 @@ public class BattleSceneManager : MonoBehaviour
         _uiManager.SetNoteEndZone(_noteEndZone);
         _uiManager.InitalizeUIManager();
         _uiManager.SetGameResult(_gameResult);
-
+        _uiManager.SetAudioManger(_audioManager);
     }
 
     private void Start()

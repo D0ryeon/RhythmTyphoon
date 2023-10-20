@@ -483,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 34536eb17c6b9a24f8bc9780c41f7234, type: 2}
     - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
       propertyPath: stageNumber
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
       propertyPath: Stage.Array.size
