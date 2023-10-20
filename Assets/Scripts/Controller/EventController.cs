@@ -15,6 +15,7 @@ public class EventController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        eventManager.isEvent = true;
         eventManager.eventID = collision.GetComponent<EventData>().eventID;
         stagePanel.SetActive(false);
         eventPanel.SetActive(true);

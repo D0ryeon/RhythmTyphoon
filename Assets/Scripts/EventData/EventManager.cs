@@ -21,7 +21,7 @@ public class EventManager : MonoBehaviour
     public int eventID;
 
     private int eventIndex;
-    private bool isEvent;
+    public bool isEvent;
 
     private void Awake()
     {
@@ -76,88 +76,86 @@ public class EventManager : MonoBehaviour
         return talkData[id][eventIndex];
     }
 
-    void Update()
-    {
-            
-    }
-
     public void Action()
     {
-        Debug.Log("다음텍스트");
-        string talkData = GetEvent(eventID, eventIndex);
-        if (talkData == null)
+        if (isEvent)
         {
-            Debug.Log("텍스트 끝");
-            isEvent = false;
-            SceneManager.LoadScene("BattleScene");
-            return;
-        }
-        eventText.text = talkData;
-        //이벤트 애니메이션 추가할 곳
-        if(eventID == 1)
-        {
-            switch (eventIndex)
+            Debug.Log("다음텍스트");
+            string talkData = GetEvent(eventID, eventIndex);
+            if (talkData == null)
             {
-                case 2:
-                    Debug.Log("애니메이션 테스트");
-                    anim.SetBool("cut2",true);
-                    break;
-                case 3:
-                    
-                    anim.SetBool("cut3", true);
-                    break;
-                case 4:
-                   
-                    anim.SetBool("cut4", true);
-                    break;
-                case 5:
-                    anim.SetBool("cut5",true);
-                    break;
-                case 6:
-                    anim.SetBool("cut6", true);
-                    break;
-                case 7:
-                    
-                    break;
-                case 8:
-                    
-                    break;
-                case 9:
-                    anim.SetBool("cut8", true);
-                    break;
-                case 10:
-                    anim.SetBool("cut9", true);
-                    break;
-                default:
-                    break;
+                Debug.Log("텍스트 끝");
+                isEvent = false;
+                SceneManager.LoadScene("BattleScene");
+                return;
             }
-        } 
-        else if(eventID == 2)
-        {
-            switch (eventIndex)
+            eventText.text = talkData;
+            //이벤트 애니메이션 추가할 곳
+            if (eventID == 1)
             {
-                case 2:
-                    break;
-                case 4:
-                    break;
-                default:
-                    break;
+                switch (eventIndex)
+                {
+                    case 2:
+                        Debug.Log("애니메이션 테스트");
+                        anim.SetBool("cut2", true);
+                        break;
+                    case 3:
+
+                        anim.SetBool("cut3", true);
+                        break;
+                    case 4:
+
+                        anim.SetBool("cut4", true);
+                        break;
+                    case 5:
+                        anim.SetBool("cut5", true);
+                        break;
+                    case 6:
+                        anim.SetBool("cut6", true);
+                        break;
+                    case 7:
+
+                        break;
+                    case 8:
+
+                        break;
+                    case 9:
+                        anim.SetBool("cut8", true);
+                        break;
+                    case 10:
+                        anim.SetBool("cut9", true);
+                        break;
+                    default:
+                        break;
+                }
             }
-        } 
-        else if(eventID == 3)
-        {
-            switch (eventIndex)
+            else if (eventID == 2)
             {
-                case 2:
-                    break;
-                case 4:
-                    break;
-                default:
-                    break;
+                switch (eventIndex)
+                {
+                    case 2:
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        break;
+                }
             }
-        }
+            else if (eventID == 3)
+            {
+                switch (eventIndex)
+                {
+                    case 2:
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             eventIndex++;
+        }
     }
 
 }
