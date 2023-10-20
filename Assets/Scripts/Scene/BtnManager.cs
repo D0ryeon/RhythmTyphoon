@@ -29,4 +29,9 @@ public class BtnManager : MonoBehaviour
     {
         SceneManager.LoadScene("GameOverScene");
     }
+
+    public void SceneChangeBattle()
+    {
+        SceneManager.LoadScene("BattleScene");
+    }
 }
