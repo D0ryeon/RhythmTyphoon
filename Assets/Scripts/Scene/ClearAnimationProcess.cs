@@ -12,6 +12,7 @@ public class ClearAnimationProcess : MonoBehaviour
     [SerializeField] private Animator comboAnimation;
     [SerializeField] private Animator continueTextAnimation;
     [SerializeField] private Animator vtuberAnimation;
+    [SerializeField] private Animator clapAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -22,19 +23,21 @@ public class ClearAnimationProcess : MonoBehaviour
     IEnumerator PlayClearAnimation()
     {
         vtuberAnimation.SetTrigger("Play");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         clearTextAnimation.SetTrigger("Play");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.0f);
         resultTextAnimation.SetTrigger("Play");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         scoreTextAnimation.SetTrigger("Play");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         scoreAnimation.SetTrigger("Play");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         comboTextAnimation.SetTrigger("Play");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         comboAnimation.SetTrigger("Play");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
+        clapAnimation.SetTrigger("Play");
+        yield return new WaitForSeconds(1.0f);
         continueTextAnimation.SetTrigger("Play");
     }
 }
