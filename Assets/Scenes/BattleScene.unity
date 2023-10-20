@@ -477,38 +477,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleSceneManager
       objectReference: {fileID: 0}
-    - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
-      propertyPath: _gameResult
-      value: 
-      objectReference: {fileID: 11400000, guid: 34536eb17c6b9a24f8bc9780c41f7234, type: 2}
-    - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
-      propertyPath: stageNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
-      propertyPath: Stage.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
-      propertyPath: Stage.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: ba7a33cad4f49ed4aa0a3397a5ff7055, type: 2}
-    - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
-      propertyPath: Stage.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: c37f594018d00fb4e97a4eca15d09e44, type: 2}
-    - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
-      propertyPath: Stage.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: f2f8b805ea3f89644ad85dd9da2d38b8, type: 2}
-    - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
-      propertyPath: MusicSink.Array.data[1]
-      value: 2.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
-      propertyPath: MusicSink.Array.data[3]
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4885573949006160901, guid: 12f8d243206b5f744948284e097d480f, type: 3}
       propertyPath: m_RootOrder
       value: 4
