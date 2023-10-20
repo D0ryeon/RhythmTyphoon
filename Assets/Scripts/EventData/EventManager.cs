@@ -50,7 +50,18 @@ public class EventManager : MonoBehaviour
 
     private void GenerateData()
     {
-        talkData.Add(1, new string[] { "맞다 심부름", "완전 까먹고 있었네","곧 있으면 태풍 온다니까<br>두부만 사서 얼른 집에 가야겠다","날씨가 바뀌는 애니메이션","이렇게 갑자기?","바람이 강하게 분다","으아악 !!!! " ,"무슨일이야","날아오는 쓰레기통","으애ㅐㅐㅐㅐㅐㅐㅐㅐ"});
+        talkData.Add(1, new string[] { 
+            "맞다 심부름",                                                   // 0
+            "완전히 잊어먹고 있었네",                                        // 1
+            "곧 있으면 태풍 온다니까<br>두부만 사서 얼른 집에 가야겠다",     // 2 , cut2 입 앙다무는 애니메이션
+            "먹구름이 몰려온다",                                      // 3 , cut3 구름이 몰려오는 애니메이션
+            "이렇게 갑자기?",                                                // 4 , cut4 반눈 애니메이션
+            "바람이 강하게 분다",                                            // 5 , cut5 바람이 부는 애니메이션
+            "으이익" ,                                                       // 6 , cut6 바람 부는 애니메이션 + 머리까짐 밀려남
+            "갑자기 바람이 이렇게 분다고?",                                  // 7 , 그대로 
+            "어 저게 뭐지?",                                                 // 8 , 그대로
+            "날아오는 쓰레기통",                                             // 9 , cut8 쓰레기통 날아옴
+            "끄아아아악"});                                                  // 10, cut9 끄아악 
         talkData.Add(2, new string[] { "스테이지2","스테이지2테스트다","진짜다" });
         talkData.Add(3, new string[] { "스테이지3","스테이지3 된장국","마렵다" });
   
@@ -92,14 +103,30 @@ public class EventManager : MonoBehaviour
                     anim.SetBool("cut2",true);
                     break;
                 case 3:
-                    eventName.SetActive(false);
+                    
+                    anim.SetBool("cut3", true);
                     break;
                 case 4:
-                    eventName.SetActive(true);
-                    anim.SetTrigger("cut3");
+                   
+                    anim.SetBool("cut4", true);
                     break;
                 case 5:
-                    anim.SetTrigger("cut4");
+                    anim.SetBool("cut5",true);
+                    break;
+                case 6:
+                    anim.SetBool("cut6", true);
+                    break;
+                case 7:
+                    
+                    break;
+                case 8:
+                    
+                    break;
+                case 9:
+                    anim.SetBool("cut8", true);
+                    break;
+                case 10:
+                    anim.SetBool("cut9", true);
                     break;
                 default:
                     break;
