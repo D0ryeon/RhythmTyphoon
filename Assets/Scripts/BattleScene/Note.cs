@@ -66,7 +66,7 @@ public class Note : NoteBasic
                     break;
                 case State.Perfect:
                     Debug.Log("Perfect!");
-
+                    uiManager.SetActiveNoteResult(state);
                     uiManager.UpdateScore(100);
                     uiManager.UpdateCombo(1);
                     uiManager.UpdateNumberOfTimes(UIManager.NoteState.Perfect);
@@ -74,13 +74,14 @@ public class Note : NoteBasic
                     break;
                 case State.Good:
                     Debug.Log("Good");
-
+                    uiManager.SetActiveNoteResult(state);
                     uiManager.UpdateScore(50);
                     uiManager.UpdateCombo(1);
                     uiManager.UpdateNumberOfTimes(UIManager.NoteState.Good);
 
                     break;
                 case State.Miss:
+                    uiManager.SetActiveNoteResult(state);
                     uiManager.UpdateNumberOfTimes(UIManager.NoteState.Miss);
                     uiManager.UpdateHealth(-1);
                     uiManager.UpdateCombo(-1);
