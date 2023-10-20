@@ -58,13 +58,13 @@ MonoBehaviour:
   _audioManager: {fileID: 8820737115372415416, guid: 72fea257afabdbf46b3bd528853a8629, type: 3}
   Stage:
   - {fileID: 11400000, guid: 1fb39909b8c135a449dcfd9ee2a58858, type: 2}
-  - {fileID: 11400000, guid: ba7a33cad4f49ed4aa0a3397a5ff7055, type: 2}
+  - {fileID: 11400000, guid: 40fb8ead9612cdc4aadceab75259d51a, type: 2}
   - {fileID: 11400000, guid: c37f594018d00fb4e97a4eca15d09e44, type: 2}
-  - {fileID: 11400000, guid: f2f8b805ea3f89644ad85dd9da2d38b8, type: 2}
+  - {fileID: 11400000, guid: b0d56958fa07b4d4ab4ed5ae16e50060, type: 2}
   MusicSink:
   - 0
   - 2.4
   - 2.5
   - 2.5
-  stageNumber: 1
+  stageNumber: 2
   _gameResult: {fileID: 11400000, guid: 34536eb17c6b9a24f8bc9780c41f7234, type: 2}
