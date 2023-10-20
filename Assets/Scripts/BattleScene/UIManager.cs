@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,8 +23,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _comboText;
     [SerializeField] private TextMeshProUGUI _startCountText;
-    [SerializeField] private TextMeshProUGUI _gameOverText;
-    [SerializeField] private TextMeshProUGUI _gameClearText;
 
     [SerializeField] private TextMeshProUGUI _numberOfTimesPerfectText;
     [SerializeField] private TextMeshProUGUI _numberOfTimesGoodText;
@@ -39,13 +39,19 @@ public class UIManager : MonoBehaviour
 
     private NoteEndZone NoteEndZone;
 
+    private AudioManager audioManager;
+
+    [SerializeField] private TextMeshProUGUI _OnPerfectText;
+    [SerializeField] private TextMeshProUGUI _OnGoodText;
+    [SerializeField] private TextMeshProUGUI _OnMissText;
+
     public int numberOfTimesPerfect { get; private set; }
     public int numberOfTimesGood { get; private set; }
     public int numberOfTimesMiss { get; private set; }
 
     [SerializeField] private GameResult _gameResult;
 
-  public void InitalizeUIManager()
+    public void InitalizeUIManager()
     {
         numberOfTimesPerfect = 0;
         numberOfTimesGood = 0;
@@ -99,25 +105,30 @@ public class UIManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.GameOver:
-                _gameOverText.gameObject.SetActive(true);
+             
                 _noteSpawnManager.StopNoteSpawn();
                 gameOver = true;
                 gameClear = false;
                 SetAcitveNumberOfTimes();
                 RecordGameResult();
+                audioManager.StopMusic();
+                SceneManager.LoadScene("GameOverScene");
                 break;
             case GameState.GameClear:
                 if (gameOver)
                     break;
-                _gameClearText.gameObject.SetActive(true);
+               
                 _noteSpawnManager.StopNoteSpawn();
                 SetAcitveNumberOfTimes();
                 gameClear = true;
                 gameOver = false;
                 RecordGameResult();
                 NoteEndZone.ClearAllNote();
+                audioManager.StopMusic();
+                SceneManager.LoadScene("ClearScene");
                 break;
-            case GameState.Pause: 
+            case GameState.Pause:
+                audioManager.PauseMusic();
                 break;
         }
     }
@@ -164,5 +175,30 @@ public class UIManager : MonoBehaviour
         _gameResult.numberOfTimesMiss = numberOfTimesMiss;
         _gameResult.GameClear = gameClear;
         _gameResult.maxCombo = maxCombo;
+    }
+
+    public void SetAudioManger(AudioManager audioManager)=> this.audioManager = audioManager;
+    
+    public void SetActiveNoteResult(Note.State state)
+    {
+        switch (state)
+        {
+            case NoteBasic.State.Perfect:
+                _OnPerfectText.gameObject.SetActive(true);
+                break;
+            case NoteBasic.State.Good:
+                _OnGoodText.gameObject.SetActive(true);
+                break;
+            case NoteBasic.State.Miss:
+                _OnMissText.gameObject.SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SetActiveFalseNoteResult(TextMeshProUGUI textMeshProUGUI)
+    {
+        textMeshProUGUI.gameObject.SetActive(false);
     }
 }
