@@ -280,7 +280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &979497974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleSceneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 82935774412171531, guid: 12f8d243206b5f744948284e097d480f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 203880471542585870, guid: 12f8d243206b5f744948284e097d480f, type: 3}
       propertyPath: stageNumber
       value: 2
@@ -550,9 +554,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2071726531714739848, guid: 445e73d9c6aa9f641ad13e335316e5aa, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Mouse
+    - target: {fileID: 4700465690048985673, guid: 445e73d9c6aa9f641ad13e335316e5aa, type: 3}
+      propertyPath: m_Size.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6212776562230722050, guid: 445e73d9c6aa9f641ad13e335316e5aa, type: 3}
       propertyPath: m_RootOrder
@@ -598,13 +602,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7717503530041460213, guid: 445e73d9c6aa9f641ad13e335316e5aa, type: 3}
-      propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 7890211065573047338, guid: 445e73d9c6aa9f641ad13e335316e5aa, type: 3}
       propertyPath: m_Name
       value: PlayerAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890211065573047338, guid: 445e73d9c6aa9f641ad13e335316e5aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
