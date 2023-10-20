@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &203880471542585870
 MonoBehaviour:
@@ -63,7 +63,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f2f8b805ea3f89644ad85dd9da2d38b8, type: 2}
   MusicSink:
   - 0
+  - 2.4
   - 2.5
   - 2.5
-  - 0
-  stageNumber: 2
+  stageNumber: 1
+  _gameResult: {fileID: 11400000, guid: 34536eb17c6b9a24f8bc9780c41f7234, type: 2}
