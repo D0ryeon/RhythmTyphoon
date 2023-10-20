@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public enum NoteState { Perfect, Good, Miss};
-    public enum GameState { GameOver, GameClear, Pause};
+    public enum NoteState { Perfect, Good, Miss };
+    public enum GameState { GameOver, GameClear, Pause };
 
     public int currentScore;
     public int combo;
@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour
         combo = 0;
         maxCombo = 0;
     }
-  
+
     public void UpdateScore(int change)
     {
         OnUpdateScore?.Invoke(change);
@@ -75,11 +75,11 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCombo(int change)
     {
-       OnUpdateCombo?.Invoke(change);
-        if(combo > maxCombo)
-            maxCombo= combo;
+        OnUpdateCombo?.Invoke(change);
+        if (combo > maxCombo)
+            maxCombo = combo;
         //Miss, Combo reset
-        if(change == -1) 
+        if (change == -1)
             combo = 0;
         _comboText.text = combo.ToString();
     }
@@ -92,7 +92,7 @@ public class UIManager : MonoBehaviour
     public void UpdateStartCount(int num)
     {
         _startCountText.text = num.ToString();
-        if(num== -1)
+        if (num == -1)
         {
             _startCountText.gameObject.SetActive(false);
         }
@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.GameOver:
-             
+
                 _noteSpawnManager.StopNoteSpawn();
                 gameOver = true;
                 gameClear = false;
@@ -117,7 +117,7 @@ public class UIManager : MonoBehaviour
             case GameState.GameClear:
                 if (gameOver)
                     break;
-               
+
                 _noteSpawnManager.StopNoteSpawn();
                 SetAcitveNumberOfTimes();
                 gameClear = true;
@@ -160,45 +160,48 @@ public class UIManager : MonoBehaviour
         _numberOfTimesMissText.text = numberOfTimesMiss.ToString();
     }
 
-    public void SetNoteSpawnManager(NoteSpawnManager noteSpawnManager)=> _noteSpawnManager = noteSpawnManager;
+    public void SetNoteSpawnManager(NoteSpawnManager noteSpawnManager) => _noteSpawnManager = noteSpawnManager;
     public void SetHealthSystem(HealthSystem healthSystem) => _healthSystem = healthSystem;
 
-    public void SetNoteEndZone(NoteEndZone noteEndZone)=> NoteEndZone = noteEndZone;
+    public void SetNoteEndZone(NoteEndZone noteEndZone) => NoteEndZone = noteEndZone;
 
-    public void SetGameResult(GameResult gameResult)=> _gameResult = gameResult;
+    public void SetGameResult(GameResult gameResult) => _gameResult = gameResult;
 
     private void RecordGameResult()
     {
         _gameResult.FinishScore = currentScore;
         _gameResult.numberOfTimesPerfect = numberOfTimesPerfect;
-        _gameResult.numberOfTimesGood= numberOfTimesGood;
+        _gameResult.numberOfTimesGood = numberOfTimesGood;
         _gameResult.numberOfTimesMiss = numberOfTimesMiss;
         _gameResult.GameClear = gameClear;
         _gameResult.maxCombo = maxCombo;
     }
 
-    public void SetAudioManger(AudioManager audioManager)=> this.audioManager = audioManager;
-    
+    public void SetAudioManger(AudioManager audioManager) => this.audioManager = audioManager;
+
     public void SetActiveNoteResult(Note.State state)
     {
         switch (state)
         {
             case NoteBasic.State.Perfect:
                 _OnPerfectText.gameObject.SetActive(true);
+                Invoke(nameof(SetFalesPerfect), 0.1f);
                 break;
             case NoteBasic.State.Good:
                 _OnGoodText.gameObject.SetActive(true);
+                Invoke(nameof(SetFalesGood), 0.1f);
                 break;
             case NoteBasic.State.Miss:
                 _OnMissText.gameObject.SetActive(true);
+                Invoke(nameof(SetFalesMiss), 0.1f);
                 break;
             default:
                 break;
         }
     }
 
-    private void SetActiveFalseNoteResult(TextMeshProUGUI textMeshProUGUI)
-    {
-        textMeshProUGUI.gameObject.SetActive(false);
-    }
+    private void SetFalesPerfect() =>_OnPerfectText.gameObject.SetActive(false);
+    private void SetFalesGood() => _OnGoodText.gameObject.SetActive(false);
+
+    private void SetFalesMiss() => _OnMissText.gameObject.SetActive(false);
 }
