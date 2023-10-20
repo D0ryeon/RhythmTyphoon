@@ -12,5 +12,321 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b76d7f3d5f0934e903ebe9f5fef4e5, type: 3}
   m_Name: KickBackPattern
   m_EditorClassIdentifier: 
-  Notes: []
+  Notes:
+  - time: 2.1257882
+    type: 0
+  - time: 2.4624262
+    type: 0
+  - time: 2.8396223
+    type: 0
+  - time: 3.1412284
+    type: 0
+  - time: 3.5114717
+    type: 0
+  - time: 3.847451
+    type: 0
+  - time: 4.110021
+    type: 0
+  - time: 4.4080424
+    type: 0
+  - time: 4.7401614
+    type: 1
+  - time: 5.2130265
+    type: 0
+  - time: 6.5570655
+    type: 0
+  - time: 6.8613763
+    type: 0
+  - time: 7.135673
+    type: 0
+  - time: 7.5586467
+    type: 1
+  - time: 8.240668
+    type: 0
+  - time: 8.908833
+    type: 0
+  - time: 9.180498
+    type: 0
+  - time: 9.454251
+    type: 0
+  - time: 10.007507
+    type: 1
+  - time: 10.621609
+    type: 0
+  - time: 11.277211
+    type: 0
+  - time: 11.767554
+    type: 0
+  - time: 12.382693
+    type: 0
+  - time: 12.567933
+    type: 0
+  - time: 12.988775
+    type: 1
+  - time: 13.368089
+    type: 0
+  - time: 14.125013
+    type: 0
+  - time: 14.677794
+    type: 0
+  - time: 14.860711
+    type: 0
+  - time: 15.078733
+    type: 0
+  - time: 15.432187
+    type: 0
+  - time: 16.004974
+    type: 0
+  - time: 16.573341
+    type: 0
+  - time: 17.085218
+    type: 0
+  - time: 17.40051
+    type: 0
+  - time: 17.703402
+    type: 0
+  - time: 18.277176
+    type: 0
+  - time: 18.812965
+    type: 0
+  - time: 19.391829
+    type: 0
+  - time: 19.744387
+    type: 0
+  - time: 20.054281
+    type: 0
+  - time: 21.015371
+    type: 0
+  - time: 21.245386
+    type: 0
+  - time: 21.405828
+    type: 0
+  - time: 21.740978
+    type: 0
+  - time: 21.98416
+    type: 0
+  - time: 22.32521
+    type: 0
+  - time: 22.67013
+    type: 0
+  - time: 22.909286
+    type: 1
+  - time: 23.219429
+    type: 0
+  - time: 23.510061
+    type: 0
+  - time: 23.838755
+    type: 0
+  - time: 24.13296
+    type: 0
+  - time: 24.462845
+    type: 0
+  - time: 24.736736
+    type: 0
+  - time: 25.046629
+    type: 0
+  - time: 25.230036
+    type: 0
+  - time: 25.792206
+    type: 0
+  - time: 25.992199
+    type: 1
+  - time: 26.199238
+    type: 0
+  - time: 26.584263
+    type: 0
+  - time: 26.852983
+    type: 0
+  - time: 27.119589
+    type: 0
+  - time: 27.647291
+    type: 0
+  - time: 27.952473
+    type: 0
+  - time: 28.287733
+    type: 1
+  - time: 28.783909
+    type: 0
+  - time: 29.238567
+    type: 0
+  - time: 30.046852
+    type: 0
+  - time: 30.66456
+    type: 0
+  - time: 31.431406
+    type: 0
+  - time: 31.935278
+    type: 0
+  - time: 32.504177
+    type: 0
+  - time: 33.053593
+    type: 0
+  - time: 33.54303
+    type: 0
+  - time: 34.54205
+    type: 0
+  - time: 35.128757
+    type: 0
+  - time: 35.927406
+    type: 0
+  - time: 36.317265
+    type: 0
+  - time: 36.61531
+    type: 1
+  - time: 36.936333
+    type: 0
+  - time: 37.597088
+    type: 0
+  - time: 38.29332
+    type: 0
+  - time: 38.871395
+    type: 0
+  - time: 39.493935
+    type: 0
+  - time: 40.02244
+    type: 0
+  - time: 40.551975
+    type: 0
+  - time: 41.200195
+    type: 0
+  - time: 41.81374
+    type: 0
+  - time: 42.42112
+    type: 0
+  - time: 43.039898
+    type: 0
+  - time: 43.631454
+    type: 0
+  - time: 44.158543
+    type: 0
+  - time: 44.6958
+    type: 1
+  - time: 45.23802
+    type: 0
+  - time: 45.919624
+    type: 0
+  - time: 46.566086
+    type: 0
+  - time: 47.15195
+    type: 0
+  - time: 47.744053
+    type: 0
+  - time: 48.29245
+    type: 0
+  - time: 48.864075
+    type: 0
+  - time: 49.4619
+    type: 0
+  - time: 50.05332
+    type: 1
+  - time: 50.671345
+    type: 0
+  - time: 53.67772
+    type: 0
+  - time: 54.22947
+    type: 0
+  - time: 54.696144
+    type: 1
+  - time: 55.245228
+    type: 0
+  - time: 55.94227
+    type: 0
+  - time: 56.566677
+    type: 0
+  - time: 57.00496
+    type: 1
+  - time: 57.53313
+    type: 0
+  - time: 58.260155
+    type: 0
+  - time: 58.847076
+    type: 0
+  - time: 59.43841
+    type: 0
+  - time: 59.927063
+    type: 0
+  - time: 60.42165
+    type: 1
+  - time: 61.08711
+    type: 0
+  - time: 61.710518
+    type: 0
+  - time: 63.021713
+    type: 0
+  - time: 63.64808
+    type: 0
+  - time: 64.11665
+    type: 1
+  - time: 64.437416
+    type: 0
+  - time: 65.35753
+    type: 0
+  - time: 65.99879
+    type: 0
+  - time: 66.78987
+    type: 0
+  - time: 67.33231
+    type: 0
+  - time: 68.11083
+    type: 0
+  - time: 68.74216
+    type: 0
+  - time: 69.28666
+    type: 0
+  - time: 69.8455
+    type: 0
+  - time: 70.72002
+    type: 0
+  - time: 71.28765
+    type: 0
+  - time: 71.86181
+    type: 0
+  - time: 73.01347
+    type: 0
+  - time: 73.61382
+    type: 0
+  - time: 74.24475
+    type: 0
+  - time: 75.43034
+    type: 0
+  - time: 75.9977
+    type: 1
+  - time: 76.48541
+    type: 0
+  - time: 77.21312
+    type: 0
+  - time: 77.790825
+    type: 0
+  - time: 78.35279
+    type: 0
+  - time: 78.876434
+    type: 0
+  - time: 79.42403
+    type: 0
+  - time: 80.038185
+    type: 0
+  - time: 80.59724
+    type: 0
+  - time: 81.166275
+    type: 0
+  - time: 81.80793
+    type: 0
+  - time: 82.383965
+    type: 0
+  - time: 82.966125
+    type: 0
+  - time: 83.57506
+    type: 0
+  - time: 84.20843
+    type: 0
+  - time: 84.759705
+    type: 0
+  - time: 85.24668
+    type: 1
+  - time: 85.70103
+    type: 0
+  - time: 86.52627
+    type: 0
+  - time: 86.52627
+    type: 0
   MusicName: KICKBACK
