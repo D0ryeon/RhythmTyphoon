@@ -7,11 +7,16 @@ public class BtnManager : MonoBehaviour
 {
     public void SceneChangeStart()
     {
-        SceneManager.LoadScene("StoryScene");
+        SceneManager.LoadScene("StartScene");
     }
 
     public void SceneChangeSetting()
     {
         SceneManager.LoadScene("SettingScene");
+    }
+
+    public void SceneChangeStory()
+    {
+        SceneManager.LoadScene("StoryScene");
     }
 }
